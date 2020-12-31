@@ -7,36 +7,49 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.blz.bookstore.dto.BookListDTO;
+
 import lombok.Data;
 
 @Entity
 @Table(name="booklistDetails")
-public class BookListDataModel {
+public @Data class BookListDataModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "book_id")
-	Integer bookId;
+	private long bookId;
 	
 	@Column(name="_id")
-	Long id;
-	
+	private String id;
 
 	@Column(name="author_name")
-	String authorName;
+	private String authorName;
 	
 	@Column(name="book_details")
-	String bookDetails;
+	private String bookDetails;
 	
 	@Column(name="book_name")
-	String bookName;
+	private String bookName;
 	
 	@Column(name="image")
-	String imageURL;
+	private String imageURL;
 	
 	@Column(name="price")
-	Double price;
+	public Double price;
 	
 	@Column(name="quantity")
-	Integer quantity;
+	private int quantity;
+	
+	public BookListDataModel() {}
+	
+	public BookListDataModel(BookListDTO bookListDTO) {
+		this.id = bookListDTO.id;
+		this.authorName = bookListDTO.authorName;
+		this.bookDetails = bookListDTO.bookDetails;
+		this.bookName = bookListDTO.bookName;
+		this.imageURL = bookListDTO.imageURL;
+		this.price = bookListDTO.price;
+		this.quantity = bookListDTO.quantity;
+	}
 }
