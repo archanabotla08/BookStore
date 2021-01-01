@@ -29,6 +29,11 @@ public class BookListService implements IBookListService {
 		return bookList;
 	}
 
+	public BookListDataModel getBookDataByBookId(int bookId) {
+		return bookStoreRepository.findById(bookId)
+				.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
+	}
+
 	public List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException {
 		List<BookListDataModel> booksList = getBookListData();
 		return booksList.stream().sorted((firstBook, secondBook) -> (int) (secondBook.price - firstBook.price))
@@ -46,5 +51,16 @@ public class BookListService implements IBookListService {
 		bookData = new BookListDataModel(bookListDTO);
 		log.debug("Book Data: " + bookData.toString());
 		return bookStoreRepository.save(bookData);
+	}
+
+	public BookListDataModel updateBookDataByBookId(int bookId, BookListDTO bookListDTO) {
+		BookListDataModel bookData = this.getBookDataByBookId(bookId);
+		bookData.updateBookDataByBookId(bookListDTO);
+		return bookStoreRepository.save(bookData);
+	}
+
+	public void deleteBookDataByBookId(int bookId) {
+		BookListDataModel bookData = this.getBookDataByBookId(bookId);
+		bookStoreRepository.delete(bookData);
 	}
 }

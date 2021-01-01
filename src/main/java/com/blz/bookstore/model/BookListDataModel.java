@@ -18,7 +18,7 @@ public @Data class BookListDataModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "book_id")
-	private long bookId;
+	private int bookId;
 	
 	@Column(name="_id")
 	private String id;
@@ -44,6 +44,10 @@ public @Data class BookListDataModel {
 	public BookListDataModel() {}
 	
 	public BookListDataModel(BookListDTO bookListDTO) {
+		this.updateBookDataByBookId(bookListDTO);
+	}
+	
+	public void updateBookDataByBookId(BookListDTO bookListDTO) {
 		this.id = bookListDTO.id;
 		this.authorName = bookListDTO.authorName;
 		this.bookDetails = bookListDTO.bookDetails;
