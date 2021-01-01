@@ -21,7 +21,6 @@ public class BookListDataModel {
 	@Column(name="_id")
 	Long id;
 	
-
 	@Column(name="author_name")
 	String authorName;
 	
@@ -30,7 +29,8 @@ public class BookListDataModel {
 	
 	@Column(name="book_name")
 	String bookName;
-	
+
+
 	@Column(name="image")
 	String imageURL;
 	
@@ -39,4 +39,5 @@ public class BookListDataModel {
 	
 	@Column(name="quantity")
 	Integer quantity;
+	
 }

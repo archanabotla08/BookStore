@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.model.BookListDataModel;
+import com.blz.bookstore.repository.BookStoreRepository;
 import com.blz.bookstore.service.IBookListService;
 
 @RestController
