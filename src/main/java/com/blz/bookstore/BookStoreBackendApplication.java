@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class BookStoreBackendApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to BookStore Backend");
 		SpringApplication.run(BookStoreBackendApplication.class, args);
 	}
 }

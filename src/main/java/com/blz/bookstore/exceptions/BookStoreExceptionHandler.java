@@ -23,13 +23,13 @@ public class BookStoreExceptionHandler {
 		List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
 		List<String> errMesg = errorList.stream().map(objErr -> objErr.getDefaultMessage())
 				.collect(Collectors.toList());
-		ResponseDTO responseDTO = new ResponseDTO(message, errMesg);
+		ResponseDTO responseDTO = new ResponseDTO(400, message, errMesg);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(BookStoreException.class)
 	public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(BookStoreException exception) {
-		ResponseDTO responseDTO = new ResponseDTO(message, exception.getMessage());
+		ResponseDTO responseDTO = new ResponseDTO(400, message, exception.getMessage());
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
 

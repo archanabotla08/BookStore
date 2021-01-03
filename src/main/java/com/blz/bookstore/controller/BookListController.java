@@ -38,16 +38,17 @@ public class BookListController {
 	public ResponseEntity<ResponseDTO> getBookStoreData() throws BookStoreException {
 		List<BookListDataModel> bookListData = null;
 		bookListData = bookListService.getBookListData();
-		ResponseDTO resDTO = new ResponseDTO("Get Call Success !!!", bookListData);
+		ResponseDTO resDTO = new ResponseDTO(200, "Retrieved all books from Database!!", bookListData);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
 
 	@ApiOperation("To get book by book-id in booklist from database")
 	@GetMapping("/getBook/{bookId}")
-	public ResponseEntity<ResponseDTO> getBookDataByBookId(@PathVariable("bookId") int bookId) {
+	public ResponseEntity<ResponseDTO> getBookDataByBookId(@PathVariable("bookId") int bookId)
+			throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = bookListService.getBookDataByBookId(bookId);
-		ResponseDTO respDTO = new ResponseDTO("GET Call For ID Successful", bookData);
+		ResponseDTO respDTO = new ResponseDTO(200, "Retrieved Book with BookId Successfully!", bookData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
@@ -55,7 +56,7 @@ public class BookListController {
 	@GetMapping("/sort/price/descending")
 	public ResponseEntity<ResponseDTO> sortBooksByPriceFromHighToLow() throws BookStoreException {
 		List<BookListDataModel> bookList = bookListService.sortBooksByPriceFromHighToLow();
-		ResponseDTO resDTO = new ResponseDTO("Books returned in descending order by price", bookList);
+		ResponseDTO resDTO = new ResponseDTO(200, "Books returned in descending order by price", bookList);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
 
@@ -63,7 +64,7 @@ public class BookListController {
 	@GetMapping("/sort/price/ascending")
 	public ResponseEntity<ResponseDTO> sortBooksByPriceFromLowToHigh() throws BookStoreException {
 		List<BookListDataModel> bookList = bookListService.sortBooksByPriceFromLowToHigh();
-		ResponseDTO resDTO = new ResponseDTO("Books returned in ascending order by price", bookList);
+		ResponseDTO resDTO = new ResponseDTO(200, "Books returned in ascending order by price", bookList);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
 
@@ -72,7 +73,7 @@ public class BookListController {
 	public ResponseEntity<ResponseDTO> createBookDataIntoList(@RequestBody BookListDTO bookListDTO)
 			throws BookStoreException {
 		BookListDataModel bookList = bookListService.createBookDataIntoList(bookListDTO);
-		ResponseDTO resDTO = new ResponseDTO("Inserted book data to list Successfully!!", bookList);
+		ResponseDTO resDTO = new ResponseDTO(200, "Inserted book data to list Successfully!!", bookList);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
 	}
 
@@ -82,7 +83,7 @@ public class BookListController {
 			@Valid @RequestBody BookListDTO bookListDTO) {
 		BookListDataModel bookData = null;
 		bookData = bookListService.updateBookDataByBookId(bookId, bookListDTO);
-		ResponseDTO respDTO = new ResponseDTO("Updated Book Details in Database Successfully", bookData);
+		ResponseDTO respDTO = new ResponseDTO(200, "Updated Book Details in Database Successfully", bookData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
@@ -90,7 +91,15 @@ public class BookListController {
 	@DeleteMapping("/delete/{bookId}")
 	public ResponseEntity<ResponseDTO> deleteBookDataByBookId(@PathVariable("bookId") int bookId) {
 		bookListService.deleteBookDataByBookId(bookId);
-		ResponseDTO respDTO = new ResponseDTO("Deleted Successfully", "Deleted id: " + bookId);
+		ResponseDTO respDTO = new ResponseDTO(200, "Deleted Successfully", "Deleted id: " + bookId);
+		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
+	}
+
+	@ApiOperation("For counting number of records in database")
+	@GetMapping("/count")
+	public ResponseEntity<ResponseDTO> list() {
+		long count = bookListService.count();
+		ResponseDTO respDTO = new ResponseDTO(200, "Got count of books successfully!!", count);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 }

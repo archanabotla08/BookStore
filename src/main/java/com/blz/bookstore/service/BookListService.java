@@ -20,18 +20,27 @@ public class BookListService implements IBookListService {
 	@Autowired
 	private BookStoreRepository bookStoreRepository;
 
-	public List<BookListDataModel> getBookListData() {
+	public List<BookListDataModel> getBookListData() throws BookStoreException {
 		List<BookListDataModel> bookList = bookStoreRepository.findAll();
-		if (bookList.isEmpty()) {
-			throw new BookStoreException("Books are not available",
-					BookStoreException.ExceptionType.BOOKS_NOT_AVAILABLE);
+		try {
+			if (bookList.isEmpty()) {
+				throw new BookStoreException("Books are not available",
+						BookStoreException.ExceptionType.BOOKS_NOT_AVAILABLE);
+			}
+		} catch (BookStoreException e) {
+			e.printStackTrace();
 		}
 		return bookList;
 	}
 
 	public BookListDataModel getBookDataByBookId(int bookId) {
-		return bookStoreRepository.findById(bookId)
-				.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
+		try {
+			return bookStoreRepository.findById(bookId)
+					.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
+		} catch (BookStoreException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException {
@@ -62,5 +71,9 @@ public class BookListService implements IBookListService {
 	public void deleteBookDataByBookId(int bookId) {
 		BookListDataModel bookData = this.getBookDataByBookId(bookId);
 		bookStoreRepository.delete(bookData);
+	}
+
+	public long count() {
+		return bookStoreRepository.count();
 	}
 }

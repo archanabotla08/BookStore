@@ -14,9 +14,9 @@ import com.blz.bookstore.model.BookListDataModel;
 public interface IBookListService {
 
 	List<BookListDataModel> getBookListData() throws BookStoreException;
-	
+
 	BookListDataModel getBookDataByBookId(int bookId);
-	
+
 	List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException;
 
 	List<BookListDataModel> sortBooksByPriceFromLowToHigh() throws BookStoreException;
@@ -26,4 +26,6 @@ public interface IBookListService {
 	BookListDataModel updateBookDataByBookId(int bookId, @Valid BookListDTO bookListDTO);
 
 	void deleteBookDataByBookId(int bookId);
+
+	long count();
 }
