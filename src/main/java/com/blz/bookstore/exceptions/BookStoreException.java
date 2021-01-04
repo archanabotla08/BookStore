@@ -3,7 +3,7 @@ package com.blz.bookstore.exceptions;
 public class BookStoreException extends Exception {
 
 	public enum ExceptionType {
-		BOOKS_NOT_AVAILABLE
+		BOOKS_NOT_AVAILABLE, ALREADY_IN_WISHLIST
 	}
 
 	public ExceptionType type;

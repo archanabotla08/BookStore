@@ -15,7 +15,7 @@ import com.blz.bookstore.model.CartData;
 public interface CartRepository extends JpaRepository<CartData, Long> {
 
 	@Query(value = "SELECT * FROM cart_details WHERE user_id=:userId", nativeQuery = true)
-	List<CartData> findUserById(Long userId);
+	List<CartData> findByUserId(Long userId);
 
 	@Modifying
 	@Transactional

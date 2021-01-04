@@ -15,7 +15,7 @@ public interface ICartService {
 
 	List<CartData> addMoreItems(Long bookId, String token);
 
-	String addToWishList(Long bookId, String token);
+	ResponseDTO addToWishList(Long bookId, String token);
 
 	String addFromWishlistToCart(Long bookId, String token);
 

@@ -18,42 +18,41 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "cart_details")
 public @Data class CartData {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "book_id")
 	private Integer bookId;
-	
+
 	@Column(name = "quantity")
 	private Long quantity;
-	
+
 	@Column(name = "price")
 	private Double price;
-	
+
 	@Column(name = "book_name")
 	private String bookName;
-	
+
 	@Column(name = "author_name")
 	private String authorName;
-	
+
 	@Column(name = "image")
 	private String image;
-	
+
 	@Column(name = "book_details")
 	private String bookDetails;
-	
+
 	@Column(name = "is_in_wishlist")
 	private Boolean isInWishList;
-	
+
 	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "userId")
-	@Column(name = "user_details")
-	public UserData userDetails;
-	
+	public UserModel userDetails;
+
 	public CartData(BookListDataModel book) {
 		this.bookId = book.getBookId();
 		this.quantity = (long) 1;
@@ -63,9 +62,9 @@ public @Data class CartData {
 		this.image = book.getImageURL();
 		this.bookDetails = this.getBookDetails();
 	}
-	
-	public CartData(long id, int bookId, long quantity, double price, String bookName, 
-			String authorName, String image, String bookDetails, UserData userDetails, Boolean isInWishList) {
+
+	public CartData(long id, int bookId, long quantity, double price, String bookName, String authorName, String image,
+			String bookDetails, UserModel userDetails, Boolean isInWishList) {
 		this.id = id;
 		this.bookId = bookId;
 		this.quantity = quantity;
@@ -77,5 +76,5 @@ public @Data class CartData {
 		this.userDetails = userDetails;
 		this.isInWishList = isInWishList;
 	}
-	
+
 }

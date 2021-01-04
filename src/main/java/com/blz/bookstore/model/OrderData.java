@@ -36,17 +36,19 @@ public class OrderData {
 	@OneToMany()
 	public List<CartData> cartBooks;
 	
-	@JsonIgnore
-	@OneToOne()
-	@JoinColumn(name = "customer")
-	public CustomerData customer;
-	
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToOne()
+	 * 
+	 * @JoinColumn(name = "customer") public CustomerData customer;
+	 */
 	public OrderData(Long orderId, Long userId, List<CartData> cart, double totalPrice, CustomerData customer) {
 		this.OrderId = orderId;
 		this.user = userId;
 		this.cartBooks = cart;
 		this.totalPrice = totalPrice;
 		this.orderPlacedDate = LocalDate.now();
-		this.customer = customer;
+		//this.customer = customer;
 	}
 }
