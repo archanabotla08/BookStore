@@ -19,7 +19,7 @@ import lombok.Data;
 @Entity
 @Table(name = "booklistDetails")
 public @Data class BookListDataModel {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "book_id")

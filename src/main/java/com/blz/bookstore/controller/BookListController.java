@@ -21,6 +21,7 @@ import com.blz.bookstore.dto.BookListDTO;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.BookStoreException;
 import com.blz.bookstore.model.BookListDataModel;
+import com.blz.bookstore.repository.BookStoreRepository;
 import com.blz.bookstore.service.IBookListService;
 
 import io.swagger.annotations.ApiOperation;

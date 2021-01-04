@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.BookStoreException;
 import com.blz.bookstore.exceptions.CartException;
-import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.CartData;
 import com.blz.bookstore.service.ICartService;
 
@@ -51,7 +50,7 @@ public class CartController {
 	@ApiOperation(value = "For adding the book to cart")
 	@PostMapping("/book")
 	public ResponseEntity<ResponseDTO> addToCart(@RequestParam Long bookId, @RequestHeader String token)
-			throws UserException, BookStoreException {
+			throws BookStoreException {
 		String responseMessage = cartService.addToCart(token, bookId);
 		ResponseDTO respDTO = new ResponseDTO(200, "Successfully added book to cart", responseMessage);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);

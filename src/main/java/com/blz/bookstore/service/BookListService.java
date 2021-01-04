@@ -58,7 +58,7 @@ public class BookListService implements IBookListService {
 	public BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = new BookListDataModel(bookListDTO);
-		log.debug("Book Data: " + bookData.toString());
+//		log.debug("Book Data: " + bookData.toString());
 		return bookStoreRepository.save(bookData);
 	}
 
