@@ -2,8 +2,8 @@ package com.blz.bookstore.dto;
 
 import lombok.ToString;
 
-@ToString
-public class BookListDTO {
+
+public @ToString class BookListDTO {
 	
 	public int bookId;
 	public long id;
@@ -13,5 +13,4 @@ public class BookListDTO {
 	public String imageURL;
 	public double price;
 	public int quantity;
-	
 }

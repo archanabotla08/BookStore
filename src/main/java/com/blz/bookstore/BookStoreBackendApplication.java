@@ -12,5 +12,4 @@ public class BookStoreBackendApplication {
 		System.out.println("Welcome to BookStore Backend");
 		SpringApplication.run(BookStoreBackendApplication.class, args);
 	}
-
 }
