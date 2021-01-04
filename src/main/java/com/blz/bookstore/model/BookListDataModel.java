@@ -46,7 +46,7 @@ public @Data class BookListDataModel {
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date_and_time")
-	private Date createdDateAndTime;
+	public Date createdDateAndTime;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)

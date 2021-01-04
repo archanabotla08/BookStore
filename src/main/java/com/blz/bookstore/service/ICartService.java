@@ -1,0 +1,30 @@
+package com.blz.bookstore.service;
+
+import java.util.List;
+
+import com.blz.bookstore.dto.ResponseDTO;
+import com.blz.bookstore.model.CartData;
+
+public interface ICartService {
+
+	List<CartData> getAllItemFromCart(String token);
+
+	List<CartData> getAllItemFromWishList(String token);
+
+	String addToCart(String token, Long bookId);
+
+	List<CartData> addMoreItems(Long bookId, String token);
+
+	String addToWishList(Long bookId, String token);
+
+	String addFromWishlistToCart(Long bookId, String token);
+
+	List<CartData> removeItem(Long bookId, String token);
+
+	String deleteAll(String token);
+
+	List<CartData> subtractItem(Long bookId, String token);
+
+	List<CartData> deleteFromWishlist(Long bookId, String token);
+
+}

@@ -20,6 +20,8 @@ public interface IBookListService {
 	List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException;
 
 	List<BookListDataModel> sortBooksByPriceFromLowToHigh() throws BookStoreException;
+	
+	//List<BookListDataModel> sortBooksByNewestArrivals() throws BookStoreException;
 
 	BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException;
 
