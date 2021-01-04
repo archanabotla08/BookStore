@@ -1,52 +1,66 @@
 package com.blz.bookstore.model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
+import javax.persistence.Temporal;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.blz.bookstore.dto.BookListDTO;
 
 import lombok.Data;
 
 @Entity
-@Table(name="booklistDetails")
+@Table(name = "booklistDetails")
 public @Data class BookListDataModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "book_id")
-	public Integer bookId;
-	
-	@Column(name="_id")
-	public Long id;
-	
-	@Column(name="author_name")
-	public String authorName;
-	
-	@Column(name="book_details")
-	public String bookDetails;
-	
-	@Column(name="book_name")
-	public String bookName;
-	
-	@Column(name="image")
-	public String imageURL;
-	
-	@Column(name="price")
-	public Double price;
-	
-	@Column(name="quantity")
-	public Integer quantity;
+	private Integer bookId;
 
-	
-	public BookListDataModel() {}
-	
+	@Column(name = "author_name")
+	private String authorName;
+
+	@Column(name = "book_details", columnDefinition = "TEXT")
+	private String bookDetails;
+
+	@Column(name = "book_name")
+	private String bookName;
+
+	@Column(name = "image")
+	private String imageURL;
+
+	@Column(name = "price")
+	public Double price;
+
+	@Column(name = "quantity")
+	private Integer quantity;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date_and_time")
+	private Date createdDateAndTime;
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updated_date_and_time")
+	private Date updatedDateAndTime;
+
+	public BookListDataModel() {
+	}
+
 	public BookListDataModel(BookListDTO bookListDTO) {
-		this.bookId = bookListDTO.bookId;
-		this.id = bookListDTO.id;
+		this.updateBookDataByBookId(bookListDTO);
+	}
+
+	public void updateBookDataByBookId(BookListDTO bookListDTO) {
 		this.authorName = bookListDTO.authorName;
 		this.bookDetails = bookListDTO.bookDetails;
 		this.bookName = bookListDTO.bookName;

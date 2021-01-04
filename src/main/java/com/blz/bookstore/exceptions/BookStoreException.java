@@ -1,8 +1,7 @@
 package com.blz.bookstore.exceptions;
 
-public class BookStoreException extends RuntimeException {
+public class BookStoreException extends Exception {
 
-	
 	public enum ExceptionType {
 		BOOKS_NOT_AVAILABLE
 	}
