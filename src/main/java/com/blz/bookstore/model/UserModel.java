@@ -1,10 +1,15 @@
 package com.blz.bookstore.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +32,10 @@ public @Data class UserModel {
 	private String password;
 	private boolean isVerify;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "book_Id")
+	private List<BookListDataModel> books;
+
 	public UserModel(String fullName, String emailId, String mobileNumber, String password) {
 		super();
 		this.fullName = fullName;
@@ -41,5 +50,21 @@ public @Data class UserModel {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long id) {
+		this.userId = id;
+	}
+
+	public boolean isVerify() {
+		return isVerify;
+	}
+
+	public void setVerify(boolean isVerify) {
+		this.isVerify = isVerify;
 	}
 }

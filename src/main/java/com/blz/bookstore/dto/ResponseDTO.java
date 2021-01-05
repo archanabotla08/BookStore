@@ -1,5 +1,7 @@
 package com.blz.bookstore.dto;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Data;
 
 public @Data class ResponseDTO {
@@ -12,11 +14,22 @@ public @Data class ResponseDTO {
 		this.data = data;
 	}
 
-	public Integer getStatusCode() {
+	public ResponseDTO(int statusCode, String message, Object data) {
+		this.statusCode = statusCode;
+		this.message = message;
+		this.data = data;
+	}
+
+	public ResponseDTO(int statusCode, String message) {
+		this.statusCode = statusCode;
+		this.message = message;
+	}
+
+	public int getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(Integer statusCode) {
+	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 
@@ -34,16 +47,5 @@ public @Data class ResponseDTO {
 
 	public void setData(Object data) {
 		this.data = data;
-	}
-
-	public ResponseDTO(int statusCode, String message, Object data) {
-		this.statusCode = statusCode;
-		this.message = message;
-		this.data = data;
-	}
-
-	public ResponseDTO(int statusCode, String message) {
-		this.statusCode = statusCode;
-		this.message = message;
 	}
 }
