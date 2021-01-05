@@ -42,6 +42,4 @@ public @Data class UserModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	
 }

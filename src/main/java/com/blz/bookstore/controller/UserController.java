@@ -28,13 +28,14 @@ public class UserController {
 
 	@Autowired
 	public IUserService userService;
-	
+
 	@ApiOperation("For Registration")
 	@PostMapping("/register")
 	public ResponseEntity<ResponseDTO> register(@RequestBody RegistrationDTO registrationDTO) throws UserException {
-		if(userService.register(registrationDTO))
-			return new ResponseEntity<ResponseDTO>(new ResponseDTO(200,"User Registration Successful"),HttpStatus.OK);
-		return new ResponseEntity<ResponseDTO>(new ResponseDTO(400,"User Registration UnSuccessful"),HttpStatus.BAD_REQUEST);
-			
+		if (userService.register(registrationDTO))
+			return new ResponseEntity<ResponseDTO>(new ResponseDTO(200, "User Registration Successful"), HttpStatus.OK);
+		return new ResponseEntity<ResponseDTO>(new ResponseDTO(400, "User Registration UnSuccessful"),
+				HttpStatus.BAD_REQUEST);
+
 	}
 }

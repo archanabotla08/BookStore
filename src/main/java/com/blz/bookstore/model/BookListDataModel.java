@@ -19,11 +19,11 @@ import lombok.Data;
 @Entity
 @Table(name = "booklistDetails")
 public @Data class BookListDataModel {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
-	private Integer bookId;
+	private Long bookId;
 
 	@Column(name = "author_name")
 	private String authorName;

@@ -3,7 +3,7 @@ package com.blz.bookstore.dto;
 import lombok.Data;
 
 public @Data class ResponseDTO {
-	private Integer statusCode;
+	private int statusCode;
 	private String message;
 	private Object data;
 
@@ -36,7 +36,7 @@ public @Data class ResponseDTO {
 		this.data = data;
 	}
 
-	public ResponseDTO(Integer statusCode, String message, Object data) {
+	public ResponseDTO(int statusCode, String message, Object data) {
 		this.statusCode = statusCode;
 		this.message = message;
 		this.data = data;

@@ -25,7 +25,7 @@ public @Data class CartData {
 	private Long id;
 
 	@Column(name = "book_id")
-	private Integer bookId;
+	private Long bookId;
 
 	@Column(name = "quantity")
 	private Long quantity;
@@ -63,7 +63,7 @@ public @Data class CartData {
 		this.bookDetails = this.getBookDetails();
 	}
 
-	public CartData(long id, int bookId, long quantity, double price, String bookName, String authorName, String image,
+	public CartData(long id, long bookId, long quantity, double price, String bookName, String authorName, String image,
 			String bookDetails, UserModel userDetails, Boolean isInWishList) {
 		this.id = id;
 		this.bookId = bookId;
