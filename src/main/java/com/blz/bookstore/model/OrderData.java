@@ -17,14 +17,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 
 @Entity
-
 @NoArgsConstructor
-
 @Table(name = "order_details")
 public class OrderData {
 
 	@Id
-
 	@Column(name = "order_id")
 	public Long OrderId;
 
@@ -37,20 +34,20 @@ public class OrderData {
 	@Column(name = "order_placed_date")
 	public LocalDate orderPlacedDate;
 
-	//@OneToMany()
-	//public List<CartData> cartBooks;
+	@OneToMany()
+	public List<CartData> cartBooks;
 
-	//@JsonIgnore
-	//@OneToOne()
-	//@JoinColumn(name = "customer")
-	//public CustomerData customer;
+	@JsonIgnore
+	@OneToOne()
+	@JoinColumn(name = "customer")
+	public CustomerModel customer;
 
-//	public OrderData(Long orderId, Long userId, List<CartData> cart, double totalPrice, CustomerData customer) {
-//		this.OrderId = orderId;
-//		this.user = userId;
-//		this.cartBooks = cart;
-//		this.totalPrice = totalPrice;
-//		this.orderPlacedDate = LocalDate.now();
-//		this.customer = customer;
-//	}
+	public OrderData(Long orderId, Long userId, List<CartData> cart, double totalPrice, CustomerModel customer) {
+		this.OrderId = orderId;
+		this.user = userId;
+		this.cartBooks = cart;
+		this.totalPrice = totalPrice;
+		this.orderPlacedDate = LocalDate.now();
+		this.customer = customer;
+	}
 }

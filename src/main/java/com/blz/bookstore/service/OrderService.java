@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.blz.bookstore.dto.EmailObject;
 import com.blz.bookstore.model.CartData;
+import com.blz.bookstore.model.CustomerModel;
 import com.blz.bookstore.model.OrderData;
 import com.blz.bookstore.model.UserModel;
 import com.blz.bookstore.repository.CartRepository;
+import com.blz.bookstore.repository.CustomerRepository;
 import com.blz.bookstore.repository.OrderRepository;
 import com.blz.bookstore.repository.UserRepository;
 import com.blz.utility.JwtGenerator;
@@ -22,23 +24,22 @@ public class OrderService implements IOrderService {
 
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private CartRepository cartRepository;
-	
-	//@Autowired
-	//private CustomerRepository customerRepository;
-	
+
+	@Autowired
+	private CustomerRepository customerRepository;
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private MailData mailData;
-	
+
 	@Autowired
 	private RabbitMQSender rabbitMQSender;
-	
-	
+
 	public OrderData getOrderSummary(String token) {
 		Long userId = JwtGenerator.decodeJWT(token);
 		Optional<OrderData> userOrders = orderRepository.findByUserId(userId);
@@ -46,31 +47,30 @@ public class OrderService implements IOrderService {
 	}
 
 	public Long placeOrder(String token) {
-//		Long orderId= generateOrderId();
-//        Long userId=JwtGenerator.decodeJWT(token);
-//        List<CartData> cart = cartRepository.findByUserId(userId);
-//        Optional<UserModel> user = userRepository.findById(userId);
-//        double totalPrice= cart.stream().mapToDouble(book -> book.getPrice() * book.getQuantity()).sum();
-//        Optional<CustomerData> customer = customerRepository.findByUserId(userId);
-//        OrderData order=new OrderData(orderId, userId, cart, totalPrice, customer.get());
-//        OrderData save = orderRepository.save(order);
-//        System.out.println(save);
-//        String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
-//        rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
-//        return orderId;
-		return null;
+		Long orderId = generateOrderId();
+		Long userId = JwtGenerator.decodeJWT(token);
+		List<CartData> cart = cartRepository.findByUserId(userId);
+		Optional<UserModel> user = userRepository.findById(userId);
+		double totalPrice = cart.stream().mapToDouble(book -> book.getPrice() * book.getQuantity()).sum();
+		Optional<CustomerModel> customer = customerRepository.findByUserId(userId);
+		OrderData order = new OrderData(orderId, userId, cart, totalPrice, customer.get());
+		OrderData save = orderRepository.save(order);
+		System.out.println(save);
+		String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
+		rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
+		return orderId;
 	}
 
 	public Long generateOrderId() {
-        boolean isUnique =false;
-        Long orderId= Long.valueOf(0);
-        while (!isUnique){
-            orderId=(long) Math.floor(100000+Math.random()*999999);
-            Optional<OrderData> byId = orderRepository.findById(orderId);
-            if(!byId.isPresent()) {
-                isUnique = true;
-            }
-        }
-        return orderId;
-    }
+		boolean isUnique = false;
+		Long orderId = Long.valueOf(0);
+		while (!isUnique) {
+			orderId = (long) Math.floor(100000 + Math.random() * 999999);
+			Optional<OrderData> byId = orderRepository.findById(orderId);
+			if (!byId.isPresent()) {
+				isUnique = true;
+			}
+		}
+		return orderId;
+	}
 }
