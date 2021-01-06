@@ -99,6 +99,4 @@ public @Data class UserModel {
 	public void setBooks(List<BookListDataModel> books) {
 		this.books = books;
 	}
-
-
 }

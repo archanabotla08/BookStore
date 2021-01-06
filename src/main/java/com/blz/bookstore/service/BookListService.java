@@ -10,6 +10,7 @@ import com.blz.bookstore.dto.BookListDTO;
 import com.blz.bookstore.exceptions.BookStoreException;
 import com.blz.bookstore.model.BookListDataModel;
 import com.blz.bookstore.repository.BookStoreRepository;
+import com.blz.utility.JwtGenerator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,8 @@ public class BookListService implements IBookListService {
 
 	public List<BookListDataModel> getBookListData() throws BookStoreException {
 		List<BookListDataModel> bookList = bookStoreRepository.findAll();
+		String token = JwtGenerator.createJWT(1);
+		System.out.println("token: " + token);
 		try {
 			if (bookList.isEmpty()) {
 				throw new BookStoreException("Books are not available",
@@ -53,7 +56,7 @@ public class BookListService implements IBookListService {
 	public BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = new BookListDataModel(bookListDTO);
-		log.debug("Book Data: " + bookData.toString());
+		//log.debug("Book Data: " + bookData.toString());
 		return bookStoreRepository.save(bookData);
 	}
 

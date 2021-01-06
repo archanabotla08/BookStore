@@ -156,5 +156,4 @@ public @Data class CartData {
 	public void setUserDetails(UserModel userDetails) {
 		this.userDetails = userDetails;
 	}
-
 }
