@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import lombok.Data;
 
 public @Data class ResponseDTO {
-	private Integer statusCode;
+	private int statusCode;
 	private String message;
 	private Object data;
 
@@ -14,7 +14,7 @@ public @Data class ResponseDTO {
 		this.data = data;
 	}
 
-	public ResponseDTO(Integer statusCode, String message, Object data) {
+	public ResponseDTO(int statusCode, String message, Object data) {
 		this.statusCode = statusCode;
 		this.message = message;
 		this.data = data;
@@ -25,11 +25,11 @@ public @Data class ResponseDTO {
 		this.message = message;
 	}
 
-	public Integer getStatusCode() {
+	public int getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(Integer statusCode) {
+	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 
@@ -47,9 +47,5 @@ public @Data class ResponseDTO {
 
 	public void setData(Object data) {
 		this.data = data;
-	}
-
-	public ResponseDTO(HttpStatus ok, String string, String reponse) {
-	
 	}
 }

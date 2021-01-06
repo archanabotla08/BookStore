@@ -2,11 +2,12 @@ package com.blz.bookstore.exceptions;
 
 public class BookStoreException extends Exception {
 
-	public enum ExceptionType {
-		BOOKS_NOT_AVAILABLE
-	}
-
+	private String message;
 	public ExceptionType type;
+
+	public enum ExceptionType {
+		BOOKS_NOT_AVAILABLE, ALREADY_IN_WISHLIST
+	}
 
 	public BookStoreException(String message, ExceptionType exceptionType) {
 		super(message);

@@ -15,12 +15,12 @@ public interface IBookListService {
 
 	List<BookListDataModel> getBookListData() throws BookStoreException;
 
-	BookListDataModel getBookDataByBookId(int bookId);
+	BookListDataModel getBookDataByBookId(long bookId);
 
 	List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException;
 
 	List<BookListDataModel> sortBooksByPriceFromLowToHigh() throws BookStoreException;
-
+	
 	BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException;
 
 	BookListDataModel updateBookDataByBookId(int bookId, @Valid BookListDTO bookListDTO);

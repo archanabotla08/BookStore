@@ -20,6 +20,7 @@ public class AppConfiguration {
 	    @Override
 	    public void configure(HttpSecurity http) throws Exception {
 	        (http.requestMatchers().antMatchers("/")).anyRequest();
+	        http.csrf().disable(); 
 	    }
 	}
 	 @Bean

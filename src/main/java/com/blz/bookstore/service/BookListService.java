@@ -36,7 +36,7 @@ public class BookListService implements IBookListService {
 		return bookList;
 	}
 
-	public BookListDataModel getBookDataByBookId(int bookId) {
+	public BookListDataModel getBookDataByBookId(long bookId) {
 		try {
 			return bookStoreRepository.findById(bookId)
 					.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
@@ -61,7 +61,7 @@ public class BookListService implements IBookListService {
 	public BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = new BookListDataModel(bookListDTO);
-//		log.debug("Book Data: " + bookData.toString());
+		//log.debug("Book Data: " + bookData.toString());
 		return bookStoreRepository.save(bookData);
 	}
 

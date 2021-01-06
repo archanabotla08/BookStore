@@ -19,11 +19,11 @@ import lombok.Data;
 @Entity
 @Table(name = "booklistDetails")
 public @Data class BookListDataModel {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
-	private Integer bookId;
+	private Long bookId;
 
 	@Column(name = "author_name")
 	private String authorName;
@@ -41,12 +41,12 @@ public @Data class BookListDataModel {
 	public Double price;
 
 	@Column(name = "quantity")
-	private Integer quantity;
+	private Long quantity;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date_and_time")
-	private Date createdDateAndTime;
+	public Date createdDateAndTime;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -67,5 +67,77 @@ public @Data class BookListDataModel {
 		this.imageURL = bookListDTO.imageURL;
 		this.price = bookListDTO.price;
 		this.quantity = bookListDTO.quantity;
+	}
+
+	public Long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getBookDetails() {
+		return bookDetails;
+	}
+
+	public void setBookDetails(String bookDetails) {
+		this.bookDetails = bookDetails;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
+
+	public Date getCreatedDateAndTime() {
+		return createdDateAndTime;
+	}
+
+	public void setCreatedDateAndTime(Date createdDateAndTime) {
+		this.createdDateAndTime = createdDateAndTime;
+	}
+
+	public Date getUpdatedDateAndTime() {
+		return updatedDateAndTime;
+	}
+
+	public void setUpdatedDateAndTime(Date updatedDateAndTime) {
+		this.updatedDateAndTime = updatedDateAndTime;
 	}
 }
