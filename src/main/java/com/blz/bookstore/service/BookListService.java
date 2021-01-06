@@ -33,14 +33,9 @@ public class BookListService implements IBookListService {
 		return bookList;
 	}
 
-	public BookListDataModel getBookDataByBookId(long bookId) {
-		try {
+	public BookListDataModel getBookDataByBookId(long bookId) throws BookStoreException {
 			return bookStoreRepository.findById(bookId)
 					.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
-		} catch (BookStoreException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException {
@@ -62,13 +57,18 @@ public class BookListService implements IBookListService {
 		return bookStoreRepository.save(bookData);
 	}
 
-	public BookListDataModel updateBookDataByBookId(int bookId, BookListDTO bookListDTO) {
-		BookListDataModel bookData = this.getBookDataByBookId(bookId);
-		bookData.updateBookDataByBookId(bookListDTO);
-		return bookStoreRepository.save(bookData);
+	public BookListDataModel updateBookDataByBookId(long bookId, BookListDTO bookListDTO) throws BookStoreException {
+		BookListDataModel bookData;
+		try {
+			bookData = this.getBookDataByBookId(bookId);
+			bookData.updateBookDataByBookId(bookListDTO);
+			return bookStoreRepository.save(bookData);
+		} catch (BookStoreException e) {
+		}
+		return null;
 	}
 
-	public void deleteBookDataByBookId(int bookId) {
+	public void deleteBookDataByBookId(long bookId) throws BookStoreException {
 		BookListDataModel bookData = this.getBookDataByBookId(bookId);
 		bookStoreRepository.delete(bookData);
 	}

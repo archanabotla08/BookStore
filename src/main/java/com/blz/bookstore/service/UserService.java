@@ -5,13 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.bookstore.dto.ForgetPasswordDTO;
 import com.blz.bookstore.dto.LoginDTO;
@@ -19,14 +15,9 @@ import com.blz.bookstore.dto.RegistrationDTO;
 import com.blz.bookstore.dto.ResetPasswordDTO;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.UserException;
-import com.blz.bookstore.model.BookListDataModel;
 import com.blz.bookstore.model.UserModel;
 import com.blz.bookstore.repository.UserRepository;
 import com.blz.utility.JwtGenerator;
-
-import net.bytebuddy.implementation.bytecode.Throw;
-
-
 
 @Service
 @Component

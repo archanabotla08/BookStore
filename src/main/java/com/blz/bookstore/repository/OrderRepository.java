@@ -11,6 +11,6 @@ import com.blz.bookstore.model.OrderData;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderData, Long> {
 
-	@Query(value = "SELECT * FROM bookstoredb.order_details WHERE user=:userId", nativeQuery = true)
+	@Query(value = "SELECT * FROM order_details WHERE user=:userId", nativeQuery = true)
 	Optional<OrderData> findByUserId(Long userId);
 }

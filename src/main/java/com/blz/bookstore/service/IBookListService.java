@@ -15,7 +15,7 @@ public interface IBookListService {
 
 	List<BookListDataModel> getBookListData() throws BookStoreException;
 
-	BookListDataModel getBookDataByBookId(long bookId);
+	BookListDataModel getBookDataByBookId(long bookId) throws BookStoreException;
 
 	List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException;
 
@@ -23,9 +23,9 @@ public interface IBookListService {
 	
 	BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException;
 
-	BookListDataModel updateBookDataByBookId(int bookId, @Valid BookListDTO bookListDTO);
+	BookListDataModel updateBookDataByBookId(long bookId, @Valid BookListDTO bookListDTO) throws BookStoreException;
 
-	void deleteBookDataByBookId(int bookId);
+	void deleteBookDataByBookId(long bookId) throws BookStoreException;
 
 	long count();
 }

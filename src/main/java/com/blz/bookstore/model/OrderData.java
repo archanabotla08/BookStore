@@ -1,4 +1,3 @@
-
 package com.blz.bookstore.model;
 
 import java.time.LocalDate;

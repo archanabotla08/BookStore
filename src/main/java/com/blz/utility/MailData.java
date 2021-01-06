@@ -13,13 +13,12 @@ import com.blz.bookstore.model.CustomerModel;
 @Service
 public class MailData {
 
-	 private String bookingTime = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+	 	private String bookingTime = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
 	    private String Header = "\t\t\t\t\t\t\t\t\tORDER CONFIRMATION\n\n";
-	    private String shopAdd = "N0 42,\n15th Cross,&14th Main Road\nHsr Layout Opposite to BDA Complex,\nKarnataka 560102\n\n";
-	    private String sincere = "Sincerely,\nBookstore Private Limited\nadmin@booksStore,in\n";
-	    private String content= "Thank you again for your order.\n\n"+"We are received your order  and will contact you as soon as your package is shipped\n";
-	    private String acknowledge="We acknowledge the receipt of your purchase order ";
-
+	    private String shopAdd = "Road NO 5 ,\n2nd Cross Road\nMSR Building Opposite to Venkatesha Restaurant,\nGuntur 522104\n\n";
+	    private String sincere = "Sincerely,\nBookstore Private Limited\nadmin@bookStore.in\n";
+	    private String content = "Thank you again for your order.\n\n"+"We are received your order and will contact you as soon as your package is shipped\n";
+	    private String acknowledge = "We acknowledge the receipt of your purchase order ";
 
 	    public String  getOrderMail(Long orderId, CustomerModel customer, double totalPrice, List<CartData> cart) {
 	        String allBookData = "";

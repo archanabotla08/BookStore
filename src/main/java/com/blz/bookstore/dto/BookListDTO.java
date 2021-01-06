@@ -4,7 +4,6 @@ import lombok.ToString;
 
 public @ToString class BookListDTO {
 
-	public Long bookId;
 	public String authorName;
 	public String bookDetails;
 	public String bookName;

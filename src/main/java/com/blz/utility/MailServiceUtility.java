@@ -73,9 +73,9 @@ public class MailServiceUtility {
 	@RabbitListener(queues = "rmq.rube.queue")
 	public void recievedMessage(EmailObject mailObject) {
 
-		if (sendMail(mailObject.getEmail(), mailObject.getSubject(), mailObject.getMessage())) { 
-			return;
-		}
+//		if (sendMail(mailObject.getEmail(), mailObject.getSubject(), mailObject.getMessage())) { 
+//			return;
+//		}
 		throw new EmailSendingException("Error in Sending mail!", HttpStatus.BAD_GATEWAY.value());
 	
 	}

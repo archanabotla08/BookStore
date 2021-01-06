@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +20,6 @@ import com.blz.bookstore.dto.RegistrationDTO;
 import com.blz.bookstore.dto.ResetPasswordDTO;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.UserException;
-import com.blz.bookstore.model.BookListDataModel;
-import com.blz.bookstore.model.UserModel;
 import com.blz.bookstore.service.IUserService;
 
 import io.swagger.annotations.ApiOperation;

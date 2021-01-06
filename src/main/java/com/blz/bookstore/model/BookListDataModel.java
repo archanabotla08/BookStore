@@ -21,7 +21,7 @@ import lombok.Data;
 public @Data class BookListDataModel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "book_id")
 	private Long bookId;
 

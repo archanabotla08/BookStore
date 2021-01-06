@@ -44,20 +44,44 @@ public @Data class UserModel {
 		this.password = password;
 	}
 
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long id) {
-		this.userId = id;
 	}
 
 	public boolean isVerify() {
@@ -67,4 +91,14 @@ public @Data class UserModel {
 	public void setVerify(boolean isVerify) {
 		this.isVerify = isVerify;
 	}
+
+	public List<BookListDataModel> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<BookListDataModel> books) {
+		this.books = books;
+	}
+
+
 }

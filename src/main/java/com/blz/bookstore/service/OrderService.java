@@ -33,12 +33,12 @@ public class OrderService implements IOrderService {
 
 	@Autowired
 	private UserRepository userRepository;
+//
+//	@Autowired
+//	private MailData mailData;
 
-	@Autowired
-	private MailData mailData;
-
-	@Autowired
-	private RabbitMQSender rabbitMQSender;
+//	@Autowired
+//	private RabbitMQSender rabbitMQSender;
 
 	public OrderData getOrderSummary(String token) {
 		Long userId = JwtGenerator.decodeJWT(token);
@@ -56,8 +56,8 @@ public class OrderService implements IOrderService {
 		OrderData order = new OrderData(orderId, userId, cart, totalPrice, customer.get());
 		OrderData save = orderRepository.save(order);
 		System.out.println(save);
-		String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
-		rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
+//		String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
+//		rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
 		return orderId;
 	}
 

@@ -21,7 +21,6 @@ import com.blz.bookstore.dto.BookListDTO;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.BookStoreException;
 import com.blz.bookstore.model.BookListDataModel;
-import com.blz.bookstore.repository.BookStoreRepository;
 import com.blz.bookstore.service.IBookListService;
 
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +44,7 @@ public class BookListController {
 
 	@ApiOperation("To get book by book-id in booklist from database")
 	@GetMapping("/getBook/{bookId}")
-	public ResponseEntity<ResponseDTO> getBookDataByBookId(@PathVariable("bookId") int bookId)
+	public ResponseEntity<ResponseDTO> getBookDataByBookId(@PathVariable("bookId") long bookId)
 			throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = bookListService.getBookDataByBookId(bookId);
@@ -80,8 +79,8 @@ public class BookListController {
 
 	@ApiOperation("For updating a book details in database by book-id")
 	@PutMapping("/update/{bookId}")
-	public ResponseEntity<ResponseDTO> updateBookDataByBookId(@PathVariable("bookId") int bookId,
-			@Valid @RequestBody BookListDTO bookListDTO) {
+	public ResponseEntity<ResponseDTO> updateBookDataByBookId(@PathVariable("bookId") long bookId,
+			@Valid @RequestBody BookListDTO bookListDTO) throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = bookListService.updateBookDataByBookId(bookId, bookListDTO);
 		ResponseDTO respDTO = new ResponseDTO(200, "Updated Book Details in Database Successfully", bookData);
@@ -90,7 +89,7 @@ public class BookListController {
 
 	@ApiOperation("For deleting a book from database by book-id")
 	@DeleteMapping("/delete/{bookId}")
-	public ResponseEntity<ResponseDTO> deleteBookDataByBookId(@PathVariable("bookId") int bookId) {
+	public ResponseEntity<ResponseDTO> deleteBookDataByBookId(@PathVariable("bookId") long bookId) throws BookStoreException {
 		bookListService.deleteBookDataByBookId(bookId);
 		ResponseDTO respDTO = new ResponseDTO(200, "Deleted Successfully", "Deleted id: " + bookId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
