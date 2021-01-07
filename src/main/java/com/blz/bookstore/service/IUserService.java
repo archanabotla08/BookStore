@@ -1,5 +1,7 @@
 package com.blz.bookstore.service;
 
+import javax.mail.MessagingException;
+
 import org.springframework.stereotype.Component;
 
 import com.blz.bookstore.dto.BookListDTO;
@@ -22,7 +24,7 @@ public interface IUserService {
 
 	boolean verify(String token) throws UserException;
 
-	ResponseDTO forgetPassword(ForgetPasswordDTO userModel);
+	ResponseDTO forgetPassword(ForgetPasswordDTO userModel) throws MessagingException;
 
 	boolean resetPassword(ResetPasswordDTO resetPassword, String token) throws UserException;
 	

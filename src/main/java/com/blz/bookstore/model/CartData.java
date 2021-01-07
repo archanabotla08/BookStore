@@ -76,6 +76,8 @@ public @Data class CartData {
 		this.userDetails = userDetails;
 		this.isInWishList = isInWishList;
 	}
+	
+	
 
 	public Long getId() {
 		return id;

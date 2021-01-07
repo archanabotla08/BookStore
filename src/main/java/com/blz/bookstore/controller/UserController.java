@@ -1,5 +1,6 @@
 package com.blz.bookstore.controller;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class UserController {
 	    }
 	    
 	    @PostMapping("/forgot/password")
-	    public ResponseEntity<ResponseDTO> forgotPassword(@RequestBody @Valid ForgetPasswordDTO emailId) {
+	    public ResponseEntity<ResponseDTO> forgotPassword(@RequestBody @Valid ForgetPasswordDTO emailId) throws MessagingException {
 	    	
 	    	ResponseDTO response= userService.forgetPassword(emailId);
 	        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);

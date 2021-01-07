@@ -1,5 +1,7 @@
 package com.blz.bookstore.controller;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class OrderController {
 	
 	@ApiOperation("For placing order")
 	@PostMapping("/place")
-	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token) {
+	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token) throws MessagingException {
 		Long orderId = orderService.placeOrder(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Order placed Successfully", orderId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

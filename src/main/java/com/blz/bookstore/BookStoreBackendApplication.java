@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-@ComponentScan("com.blz.bookstore")
+@ComponentScan({"com.blz.bookstore","com.blz.utility"})
 public class BookStoreBackendApplication {
 
 	public static void main(String[] args) {
