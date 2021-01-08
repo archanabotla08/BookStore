@@ -78,6 +78,7 @@ public class UserService implements IUserService {
 		UserModel userModel = userRepository.findById(id).get();
 		if (id > 0 && userModel != null) {
 			if (!userModel.isVerify()) {
+				userModel.setVerify(true);
 				userRepository.save(userModel);
 				return true;
 			}
