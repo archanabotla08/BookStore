@@ -2,6 +2,8 @@ package com.blz.bookstore.service;
 
 import java.util.Optional;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.UserModel;
 import com.blz.bookstore.repository.UserRepository;
+import com.blz.utility.EmailSender;
 import com.blz.utility.JwtGenerator;
 
 @Service
@@ -29,8 +32,12 @@ public class UserService implements IUserService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	@Autowired
+	private EmailSender emailSender;
+	
 	 private static final String VERIFICATION_URL = "http://localhost:8080/verify/";
-	 private static final String RESETPASSWORD_URL = "http://localhost:8080/user/resetpassword?token=";
+//	 private static final String RESETPASSWORD_URL = "http://localhost:8080/user/resetpassword?token=";
+	 private static final String RESETPASSWORD_URL = "http://localhost:8080/swagger-ui.html#/user-controller/resetPasswordUsingPOST";
 	 
 	@Override
 	public boolean  register(RegistrationDTO registrationDTO) throws UserException {
@@ -80,14 +87,20 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public ResponseDTO forgetPassword(ForgetPasswordDTO userModel) {
+	public ResponseDTO forgetPassword(ForgetPasswordDTO userModel) throws MessagingException {
+		
 		UserModel isUserIdExists = userRepository.findByEmailId(userModel.getEmailId()).get();
-		if(isUserIdExists != null  && isUserIdExists.isVerify()) {
+		System.out.printf("id: ",isUserIdExists);
+		
+		
+		if(isUserIdExists != null ) {	//&& isUserIdExists.isVerify()
 			String token = JwtGenerator.createJWT(isUserIdExists.getUserId());
-			String reponse = RESETPASSWORD_URL + token ;
+			String reponse = RESETPASSWORD_URL ;
+			emailSender.send(userModel.getEmailId(),"Reset Password Verification URL",reponse,token);
+			
 			return new ResponseDTO(HttpStatus.OK.value(), "Link For ResetPassword", reponse);
-		}
-		return new ResponseDTO(HttpStatus.OK.value(), "Email Verification Fail");
+		}	
+		return new ResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Email verfication Fail");
 	}
 
 	@Override

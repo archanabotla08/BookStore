@@ -3,6 +3,8 @@ package com.blz.bookstore.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,9 @@ import com.blz.bookstore.repository.CartRepository;
 import com.blz.bookstore.repository.CustomerRepository;
 import com.blz.bookstore.repository.OrderRepository;
 import com.blz.bookstore.repository.UserRepository;
+import com.blz.utility.EmailSender;
 import com.blz.utility.JwtGenerator;
-import com.blz.utility.MailData;
+//import com.blz.utility.MailData;
 import com.blz.utility.RabbitMQSender;
 
 @Service
@@ -34,12 +37,9 @@ public class OrderService implements IOrderService {
 
 	@Autowired
 	private UserRepository userRepository;
-//
-//	@Autowired
-//	private MailData mailData;
 
-//	@Autowired
-//	private RabbitMQSender rabbitMQSender;
+	@Autowired
+	private EmailSender emailSender;
 
 	public OrderData getOrderSummary(String token) throws UserException {
 		Long userId = JwtGenerator.decodeJWT(token);
@@ -47,7 +47,7 @@ public class OrderService implements IOrderService {
 		return userOrders.get();
 	}
 
-	public Long placeOrder(String token) throws UserException {
+	public Long placeOrder(String token) throws MessagingException, UserException {
 		Long orderId = generateOrderId();
 		Long userId = JwtGenerator.decodeJWT(token);
 		List<CartData> cart = cartRepository.findByUserId(userId);
@@ -57,8 +57,11 @@ public class OrderService implements IOrderService {
 		OrderData order = new OrderData(orderId, userId, cart, totalPrice, customer.get());
 		OrderData save = orderRepository.save(order);
 		System.out.println(save);
+		String body = "OrderId: " + orderId + "\n" + "customer: " + customer.get() + "\n" + "totalPrice: " + totalPrice + "cart: " + cart ;
 //		String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
 //		rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
+		
+		emailSender.send(user.get().getEmailId(), "Order Summary",body, token);
 		return orderId;
 	}
 
