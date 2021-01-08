@@ -15,19 +15,20 @@ public class AppConfiguration {
 	@Configuration
 	public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	    @Override
-	    public void configure(HttpSecurity http) throws Exception {
-	        (http.requestMatchers().antMatchers("/")).anyRequest();
-	        http.csrf().disable(); 
-	    }
-	}
-	 @Bean
-		@Primary
-		public BCryptPasswordEncoder getpce()
-		{
-			return new BCryptPasswordEncoder();
+		@Override
+		public void configure(HttpSecurity http) throws Exception {
+			(http.requestMatchers().antMatchers("/")).anyRequest();
+			http.csrf().disable();
 		}
-	 public static String hash(String password,int row) {
-	        return BCrypt.hashpw(password, BCrypt.gensalt(row));
-	    }
+	}
+
+	@Bean
+	@Primary
+	public BCryptPasswordEncoder getpce() {
+		return new BCryptPasswordEncoder();
+	}
+
+	public static String hash(String password, int row) {
+		return BCrypt.hashpw(password, BCrypt.gensalt(row));
+	}
 }

@@ -27,15 +27,15 @@ public class JwtGenerator {
 	private static final long REGISTRATION_EXP = 10800000;
 
 	public static String createJWT(long id) {
-		long ttlMillis=REGISTRATION_EXP;
-		signatureAlgorithm= SignatureAlgorithm.HS256;
+		long ttlMillis = REGISTRATION_EXP;
+		signatureAlgorithm = SignatureAlgorithm.HS256;
 		nowMillis = System.currentTimeMillis();
 		now = new Date(nowMillis);
 		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secretKey);
 		Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 		JwtBuilder builder = Jwts.builder().setId(String.valueOf(id)).setIssuedAt(now).setSubject(subject)
 				.setIssuer(issuer).signWith(signatureAlgorithm, signingKey);
-		System.out.println("token: "+ builder);
+		System.out.println("token: " + builder);
 		if (ttlMillis >= 0) {
 			long expMillis = nowMillis + ttlMillis;
 			Date exp = new Date(expMillis);
@@ -48,8 +48,8 @@ public class JwtGenerator {
 		try {
 			return Long.parseLong(Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
 					.parseClaimsJws(jwt).getBody().getId());
-					}catch(MalformedJwtException | SignatureException e) {
+		} catch (MalformedJwtException | SignatureException e) {
 			throw new UserException("Token is incorrect");
 		}
-			}
+	}
 }

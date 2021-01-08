@@ -34,7 +34,8 @@ public class CartController {
 
 	@ApiOperation(value = "For getting all books in the cart")
 	@GetMapping("/allbooks")
-	public ResponseEntity<ResponseDTO> getAllItemsFromCart(@RequestHeader String token) throws CartException, UserException {
+	public ResponseEntity<ResponseDTO> getAllItemsFromCart(@RequestHeader String token)
+			throws CartException, UserException {
 		List<CartData> userCart = cartService.getAllItemFromCart(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Successfully returned books from cart", userCart);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
@@ -76,7 +77,8 @@ public class CartController {
 
 	@ApiOperation(value = "For putting books wishlist to cart")
 	@PutMapping("/wishlist/to/cart")
-	public ResponseDTO addFromWishlistToCart(@RequestParam Long bookId, @RequestHeader("token") String token) throws UserException {
+	public ResponseDTO addFromWishlistToCart(@RequestParam Long bookId, @RequestHeader("token") String token)
+			throws UserException {
 		return cartService.addFromWishlistToCart(bookId, token);
 	}
 
@@ -98,7 +100,8 @@ public class CartController {
 
 	@ApiOperation(value = "For decrementing the book quantity")
 	@DeleteMapping("/item")
-	public ResponseEntity<ResponseDTO> subtractItem(@RequestParam Long bookId, @RequestHeader String token) throws UserException {
+	public ResponseEntity<ResponseDTO> subtractItem(@RequestParam Long bookId, @RequestHeader String token)
+			throws UserException {
 		List<CartData> carts = cartService.subtractItem(bookId, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Book quantity decremented successfully", carts),
 				HttpStatus.OK);

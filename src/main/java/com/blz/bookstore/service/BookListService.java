@@ -12,10 +12,7 @@ import com.blz.bookstore.model.BookListDataModel;
 import com.blz.bookstore.repository.BookStoreRepository;
 import com.blz.utility.JwtGenerator;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class BookListService implements IBookListService {
 
 	@Autowired
@@ -37,8 +34,8 @@ public class BookListService implements IBookListService {
 	}
 
 	public BookListDataModel getBookDataByBookId(long bookId) throws BookStoreException {
-			return bookStoreRepository.findById(bookId)
-					.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
+		return bookStoreRepository.findById(bookId)
+				.orElseThrow(() -> new BookStoreException("Book with bookId " + bookId + " does not exists!!"));
 	}
 
 	public List<BookListDataModel> sortBooksByPriceFromHighToLow() throws BookStoreException {
@@ -56,7 +53,7 @@ public class BookListService implements IBookListService {
 	public BookListDataModel createBookDataIntoList(BookListDTO bookListDTO) throws BookStoreException {
 		BookListDataModel bookData = null;
 		bookData = new BookListDataModel(bookListDTO);
-		//log.debug("Book Data: " + bookData.toString());
+		// log.debug("Book Data: " + bookData.toString());
 		return bookStoreRepository.save(bookData);
 	}
 

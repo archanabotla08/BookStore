@@ -15,7 +15,7 @@ import com.blz.bookstore.exceptions.UserException;
 public interface IUserService {
 
 	boolean register(RegistrationDTO registrationDTO) throws UserException;
-	
+
 	String login(LoginDTO loginDto) throws UserException;
 
 	boolean verify(String token) throws UserException;
@@ -23,5 +23,5 @@ public interface IUserService {
 	ResponseDTO forgetPassword(ForgetPasswordDTO userModel) throws MessagingException;
 
 	boolean resetPassword(ResetPasswordDTO resetPassword, String token) throws UserException;
-	
+
 }

@@ -9,7 +9,7 @@ import com.blz.bookstore.model.CustomerModel;
 @Component("ICustomerService")
 public interface ICustomerService {
 
-	   CustomerModel getCustomerDetails(String token) throws UserException;
+	CustomerModel getCustomerDetails(String token) throws UserException;
 
-	   String addCustomerDetails(String token, CustomerDTO customerModel) throws UserException;
+	String addCustomerDetails(String token, CustomerDTO customerModel) throws UserException;
 }

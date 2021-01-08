@@ -46,9 +46,9 @@ public @Data class CartData {
 
 	@Column(name = "book_details", columnDefinition = "TEXT")
 	private String bookDetails;
-	
+
 	@Column(name = "is_in_wishlist")
-	private Boolean isInWishList;
+	private boolean isInWishList;
 
 	@JsonIgnore
 	@ManyToOne()
@@ -63,101 +63,5 @@ public @Data class CartData {
 		this.authorName = book.getAuthorName();
 		this.image = book.getImageURL();
 		this.bookDetails = book.getBookDetails();
-	}
-
-	public CartData(long id, long bookId, long quantity, double price, String bookName, String authorName, String image,
-			String bookDetails, UserModel userDetails, Boolean isInWishList) {
-		this.id = id;
-		this.bookId = bookId;
-		this.quantity = quantity;
-		this.price = price;
-		this.bookName = bookName;
-		this.authorName = authorName;
-		this.image = image;
-		this.bookDetails = bookDetails;
-		this.userDetails = userDetails;
-		this.isInWishList = isInWishList;
-	}
-	
-	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(Long bookId) {
-		this.bookId = bookId;
-	}
-
-	public Long getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getBookDetails() {
-		return bookDetails;
-	}
-
-	public void setBookDetails(String bookDetails) {
-		this.bookDetails = bookDetails;
-	}
-
-	public Boolean getIsInWishList() {
-		return isInWishList;
-	}
-
-	public void setIsInWishList(Boolean isInWishList) {
-		this.isInWishList = isInWishList;
-	}
-
-	public UserModel getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserModel userDetails) {
-		this.userDetails = userDetails;
 	}
 }

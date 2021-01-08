@@ -13,12 +13,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Table(name = "order_details")
-public class OrderData {
+public @Data class OrderData {
 
 	@Id
 	@Column(name = "order_id")

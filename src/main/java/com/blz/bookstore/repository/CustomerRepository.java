@@ -9,6 +9,6 @@ import com.blz.bookstore.model.CustomerModel;
 
 public interface CustomerRepository extends JpaRepository<CustomerModel, Long> {
 
-    @Query(value = "select * from customer_details where user_id=:userId", nativeQuery = true)
-    Optional<CustomerModel> findByUserId(Long userId);
+	@Query(value = "select * from customer_details where user_id=:userId", nativeQuery = true)
+	Optional<CustomerModel> findByUserId(Long userId);
 }

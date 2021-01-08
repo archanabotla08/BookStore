@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.blz.bookstore.model.UserModel;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserModel, Long>{
+public interface UserRepository extends JpaRepository<UserModel, Long> {
 
-	@Query(value="SELECT * FROM user where email_id=:emailId",nativeQuery=true)
+	@Query(value = "SELECT * FROM user where email_id=:emailId", nativeQuery = true)
 	Optional<UserModel> findByEmailId(String emailId);
 
 	Optional<UserModel> findById(Long userId);
-	
+
 }

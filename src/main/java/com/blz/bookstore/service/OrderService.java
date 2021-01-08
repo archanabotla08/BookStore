@@ -7,8 +7,6 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.blz.bookstore.dto.EmailObject;
 import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.CartData;
 import com.blz.bookstore.model.CustomerModel;
@@ -20,8 +18,6 @@ import com.blz.bookstore.repository.OrderRepository;
 import com.blz.bookstore.repository.UserRepository;
 import com.blz.utility.EmailSender;
 import com.blz.utility.JwtGenerator;
-//import com.blz.utility.MailData;
-import com.blz.utility.RabbitMQSender;
 
 @Service
 public class OrderService implements IOrderService {
@@ -57,11 +53,9 @@ public class OrderService implements IOrderService {
 		OrderData order = new OrderData(orderId, userId, cart, totalPrice, customer.get());
 		OrderData save = orderRepository.save(order);
 		System.out.println(save);
-		String body = "OrderId: " + orderId + "\n" + "customer: " + customer.get() + "\n" + "totalPrice: " + totalPrice + "cart: " + cart ;
-//		String orderMail = mailData.getOrderMail(orderId, customer.get(), totalPrice, cart);
-//		rabbitMQSender.send(new EmailObject(user.get().getEmailId(), "Order Summary", orderMail));
-		
-		emailSender.send(user.get().getEmailId(), "Order Summary",body, token);
+		String body = "OrderId: " + orderId + "\n" + "customer: " + customer.get() + "\n" + "totalPrice: " + totalPrice
+				+ "cart: " + cart;
+		emailSender.send(user.get().getEmailId(), "Order Summary", body, token);
 		return orderId;
 	}
 

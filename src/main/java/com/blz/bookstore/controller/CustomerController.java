@@ -25,22 +25,24 @@ import io.swagger.annotations.ApiOperation;
 @Component
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class CustomerController {
-	
+
 	@Autowired
-    public ICustomerService customerService;
+	public ICustomerService customerService;
 
-    @ApiOperation("For adding customer details")
-    @PostMapping("/details")
-    public ResponseEntity<ResponseDTO> customerDetails(@RequestHeader(value = "token", required = false)String token, @RequestBody CustomerDTO customer) throws UserException {
-        String responseMessage = customerService.addCustomerDetails(token, customer);
-        return new ResponseEntity<>(new ResponseDTO(200,responseMessage), HttpStatus.OK);
-    }
+	@ApiOperation("For adding customer details")
+	@PostMapping("/details")
+	public ResponseEntity<ResponseDTO> customerDetails(@RequestHeader(value = "token", required = false) String token,
+			@RequestBody CustomerDTO customer) throws UserException {
+		String responseMessage = customerService.addCustomerDetails(token, customer);
+		return new ResponseEntity<>(new ResponseDTO(200, responseMessage), HttpStatus.OK);
+	}
 
-    @ApiOperation("For fetching customer details")
-    @GetMapping("/details")
-    public ResponseEntity<ResponseDTO> getCustomerDetails(@RequestHeader(value = "token")String token) throws UserException {
-        CustomerModel userDetails= customerService.getCustomerDetails(token);
-        ResponseDTO response=new ResponseDTO(200,"Customer details sent successfully", userDetails);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+	@ApiOperation("For fetching customer details")
+	@GetMapping("/details")
+	public ResponseEntity<ResponseDTO> getCustomerDetails(@RequestHeader(value = "token") String token)
+			throws UserException {
+		CustomerModel userDetails = customerService.getCustomerDetails(token);
+		ResponseDTO response = new ResponseDTO(200, "Customer details sent successfully", userDetails);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 }

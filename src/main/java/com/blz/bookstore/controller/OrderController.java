@@ -26,7 +26,7 @@ public class OrderController {
 
 	@Autowired
 	private IOrderService orderService;
-	
+
 	@ApiOperation("For fetching order summary")
 	@GetMapping("/details")
 	public ResponseEntity<ResponseDTO> getOrderSummary(@RequestHeader String token) throws UserException {
@@ -35,10 +35,11 @@ public class OrderController {
 		ResponseDTO respDTO = new ResponseDTO(200, "Response Sent Successfully", orderDetails);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation("For placing order")
 	@PostMapping("/place")
-	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token) throws MessagingException, UserException {
+	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token)
+			throws MessagingException, UserException {
 		Long orderId = orderService.placeOrder(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Order placed Successfully", orderId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

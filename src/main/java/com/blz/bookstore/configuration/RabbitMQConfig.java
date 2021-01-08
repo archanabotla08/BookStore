@@ -10,28 +10,27 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 
-
 @Configuration
 public class RabbitMQConfig {
 
 	@Autowired
 	private ConnectionFactory rabbitConnectionFactory;
-	
+
 	@Bean
 	public DirectExchange rubeExchange() {
 		return new DirectExchange("rmq.rube.exchange", true, false);
 	}
-	
+
 	@Bean
 	public Queue rubeQueue() {
 		return new Queue("rmq.rube.queue", true);
 	}
-	
+
 	@Bean
 	public Binding rubeExchangeBinding(DirectExchange rubeExchange, Queue rubeQueue) {
 		return BindingBuilder.bind(rubeQueue).to(rubeExchange).with("rube.key");
 	}
-	
+
 	@Bean
 	public RabbitTemplate rubeExchangeTemplate() {
 		RabbitTemplate rabbitTemplate = new RabbitTemplate(rabbitConnectionFactory);

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import com.blz.bookstore.model.BookListDataModel;
 
 @Repository
-public interface BookStoreRepository extends JpaRepository<BookListDataModel, Long> {	
+public interface BookStoreRepository extends JpaRepository<BookListDataModel, Long> {
 }

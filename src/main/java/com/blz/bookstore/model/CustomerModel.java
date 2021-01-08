@@ -42,49 +42,4 @@ public @Data class CustomerModel {
 		this.landMark = customerDTO.getLandMark();
 		this.locationType = customerDTO.getLocationType();
 	}
-
-	public long getUserId() {
-		return userId;
-	}
-
-	public String getFullName() {
-		return fullName;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-	public long getPinCode() {
-		return pinCode;
-	}
-
-	public String getLocality() {
-		return locality;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public String getLandMark() {
-		return landMark;
-	}
-
-	public String getLocationType() {
-		return locationType;
-	}
-
 }

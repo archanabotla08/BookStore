@@ -15,9 +15,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.blz.bookstore.dto.BookListDTO;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "booklistDetails")
+@NoArgsConstructor
 public @Data class BookListDataModel {
 
 	@Id
@@ -52,9 +54,6 @@ public @Data class BookListDataModel {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date_and_time")
 	private Date updatedDateAndTime;
-
-	public BookListDataModel() {
-	}
 
 	public BookListDataModel(BookListDTO bookListDTO) {
 		this.updateBookDataByBookId(bookListDTO);

@@ -1,5 +1,6 @@
 package com.blz.bookstore.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,15 +33,22 @@ public class CartService implements ICartService {
 	@Autowired
 	private BookStoreRepository bookStoreRepository;
 
+	@Override
 	public List<CartData> getAllItemFromCart(String token) throws UserException {
 		Long id = JwtGenerator.decodeJWT(token);
-		//return cartRepository.findByUserId(id).stream().filter(c -> !c.getIsInWishList()).collect(Collectors.toList());
-		return cartRepository.findByUserId(id);
+		List<CartData> items =  cartRepository.findByUserId(id).stream().filter(c -> !c.isInWishList()).collect(Collectors.toList());
+		if (items.isEmpty())
+            return new ArrayList<>();
+        return items;
 	}
 
+	@Override
 	public List<CartData> getAllItemFromWishList(String token) throws UserException {
 		Long id = JwtGenerator.decodeJWT(token);
-		return cartRepository.findByUserId(id);
+		List<CartData> items = cartRepository.findByUserId(id).stream().filter(CartData::isInWishList).collect(Collectors.toList());
+		if (items.isEmpty())
+            return new ArrayList<>();
+        return items;
 	}
 
 	public String addToCart(String token, Long bookId) throws BookStoreException, UserException {
@@ -76,9 +84,9 @@ public class CartService implements ICartService {
 		CartData cartData = cartRepository.findByUserIdAndBookId(id, bookId);
 		Long cartBook = cartRepository.findDuplicateBookId(bookId);
 		if (cartBook != bookId) {
-			if (cartData != null && cartData.getIsInWishList()) {
+			if (cartData != null && cartData.isInWishList()) {
 				return new ResponseDTO(HttpStatus.OK.value(), "Book already present in wishlist");
-			} else if (cartData != null && !cartData.getIsInWishList()) {
+			} else if (cartData != null && !cartData.isInWishList()) {
 				return new ResponseDTO(HttpStatus.OK.value(), "Book already added to Cart");
 			} else {
 				BookListDataModel book = bookStoreRepository.findById(bookId)
@@ -87,7 +95,7 @@ public class CartService implements ICartService {
 				CartData cartModel = new CartData(book);
 				Optional<UserModel> user = userRepository.findById(id);
 				cartModel.setUserDetails(user.get());
-				cartModel.setIsInWishList(true);
+				cartModel.setInWishList(true);
 				cartRepository.save(cartModel);
 				return new ResponseDTO(HttpStatus.OK.value(), "Book added to WishList");
 			}
@@ -99,8 +107,8 @@ public class CartService implements ICartService {
 	public ResponseDTO addFromWishlistToCart(Long bookId, String token) throws UserException {
 		long id = JwtGenerator.decodeJWT(token);
 		CartData cartModel = cartRepository.findByUserIdAndBookId(id, bookId);
-		if (cartModel.getIsInWishList()) {
-			cartModel.setIsInWishList(false);
+		if (cartModel.isInWishList()) {
+			cartModel.setInWishList(false);
 			cartRepository.save(cartModel);
 			return new ResponseDTO(HttpStatus.OK.value(), "Successfully added book to cart from wishlist");
 		}
@@ -151,7 +159,7 @@ public class CartService implements ICartService {
 
 	public List<CartData> deleteFromWishlist(Long bookId, String token) throws UserException {
 		Long userId = JwtGenerator.decodeJWT(token);
-		List<CartData> items = cartRepository.findByUserId(userId).stream().filter(CartData::getIsInWishList)
+		List<CartData> items = cartRepository.findByUserId(userId).stream().filter(CartData::isInWishList)
 				.collect(Collectors.toList());
 		List<CartData> selectedItems = items.stream().filter(cartItem -> cartItem.getBookId().equals(bookId))
 				.collect(Collectors.toList());
