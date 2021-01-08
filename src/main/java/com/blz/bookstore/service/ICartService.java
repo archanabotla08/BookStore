@@ -5,28 +5,29 @@ import java.util.List;
 import com.blz.bookstore.dto.ResponseDTO;
 import com.blz.bookstore.exceptions.BookStoreException;
 import com.blz.bookstore.exceptions.CartException;
+import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.CartData;
 
 public interface ICartService {
 
-	List<CartData> getAllItemFromCart(String token);
+	List<CartData> getAllItemFromCart(String token) throws UserException;
 
-	List<CartData> getAllItemFromWishList(String token);
+	List<CartData> getAllItemFromWishList(String token) throws UserException;
 
-	String addToCart(String token, Long bookId) throws BookStoreException;
+	String addToCart(String token, Long bookId) throws BookStoreException, UserException;
 
-	List<CartData> addMoreItems(Long bookId, String token);
+	List<CartData> addMoreItems(Long bookId, String token) throws UserException;
 
-	ResponseDTO addToWishList(Long bookId, String token) throws BookStoreException;
+	ResponseDTO addToWishList(Long bookId, String token) throws BookStoreException, UserException;
 
-	ResponseDTO addFromWishlistToCart(Long bookId, String token);
+	ResponseDTO addFromWishlistToCart(Long bookId, String token) throws UserException;
 
-	List<CartData> removeItem(Long bookId, String token) throws CartException;
+	List<CartData> removeItem(Long bookId, String token) throws CartException, UserException;
 
-	String deleteAll(String token);
+	String deleteAll(String token) throws UserException;
 
-	List<CartData> subtractItem(Long bookId, String token);
+	List<CartData> subtractItem(Long bookId, String token) throws UserException;
 
-	List<CartData> deleteFromWishlist(Long bookId, String token);
+	List<CartData> deleteFromWishlist(Long bookId, String token) throws UserException;
 
 }

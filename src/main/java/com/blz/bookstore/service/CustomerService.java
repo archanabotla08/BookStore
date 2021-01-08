@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blz.bookstore.dto.CustomerDTO;
+import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.CustomerModel;
 import com.blz.bookstore.model.UserModel;
 import com.blz.bookstore.repository.CustomerRepository;
@@ -22,14 +23,14 @@ public class CustomerService implements ICustomerService {
 	public CustomerRepository customerRepository;
 	
 	@Override
-	public CustomerModel getCustomerDetails(String token) {
+	public CustomerModel getCustomerDetails(String token) throws UserException {
         Long userId = JwtGenerator.decodeJWT(token);
         Optional<CustomerModel> customer= customerRepository.findById(userId);
         return customer.get();
 	}
 
 	@Override
-	public String addCustomerDetails(String token, CustomerDTO customerModel) {
+	public String addCustomerDetails(String token, CustomerDTO customerModel) throws UserException {
 		Long userId= JwtGenerator.decodeJWT(token);
         Optional<UserModel> user = userRepository.findById(userId);
         Optional<CustomerModel> isCustomerAvailable = customerRepository.findByUserId(user.get().getUserId());

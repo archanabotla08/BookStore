@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.bookstore.dto.ResponseDTO;
+import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.OrderData;
 import com.blz.bookstore.service.IOrderService;
 
@@ -26,7 +27,7 @@ public class OrderController {
 	
 	@ApiOperation("For fetching order summary")
 	@GetMapping("/details")
-	public ResponseEntity<ResponseDTO> getOrderSummary(@RequestHeader String token) {
+	public ResponseEntity<ResponseDTO> getOrderSummary(@RequestHeader String token) throws UserException {
 		OrderData orderDetails = null;
 		orderDetails = orderService.getOrderSummary(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Response Sent Successfully", orderDetails);
@@ -35,7 +36,7 @@ public class OrderController {
 	
 	@ApiOperation("For placing order")
 	@PostMapping("/place")
-	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token) {
+	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token) throws UserException {
 		Long orderId = orderService.placeOrder(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Order placed Successfully", orderId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

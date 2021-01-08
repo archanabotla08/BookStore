@@ -34,7 +34,7 @@ public class CartController {
 
 	@ApiOperation(value = "For getting all books in the cart")
 	@GetMapping("/allbooks")
-	public ResponseEntity<ResponseDTO> getAllItemsFromCart(@RequestHeader String token) throws CartException {
+	public ResponseEntity<ResponseDTO> getAllItemsFromCart(@RequestHeader String token) throws CartException, UserException {
 		List<CartData> userCart = cartService.getAllItemFromCart(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Successfully returned books from cart", userCart);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
@@ -43,7 +43,7 @@ public class CartController {
 	@ApiOperation(value = "For getting all books from wishlist")
 	@GetMapping("/wishlist/all")
 	public ResponseEntity<ResponseDTO> getWishListBooks(@RequestHeader("token") String token)
-			throws BookStoreException {
+			throws BookStoreException, UserException {
 		List<CartData> cartData = cartService.getAllItemFromWishList(token);
 		ResponseDTO resDTO = new ResponseDTO(200, "Retrieved all books from WishList!!", cartData);
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.OK);
@@ -61,7 +61,7 @@ public class CartController {
 	@ApiOperation(value = "For incrementing book quantity")
 	@PostMapping("/moreitems")
 	public ResponseEntity<ResponseDTO> addMoreItems(@RequestParam Long bookId, @RequestHeader String token)
-			throws BookStoreException {
+			throws BookStoreException, UserException {
 		List<CartData> userCart = cartService.addMoreItems(bookId, token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Successfully incremented book quantity", userCart);
 		return new ResponseEntity<>(respDTO, HttpStatus.OK);
@@ -70,35 +70,35 @@ public class CartController {
 	@ApiOperation(value = "For adding book to wishlist")
 	@PostMapping("/wishlist/book")
 	public ResponseDTO addToWishList(@RequestParam Long bookId, @RequestHeader("token") String token)
-			throws BookStoreException {
+			throws BookStoreException, UserException {
 		return cartService.addToWishList(bookId, token);
 	}
 
 	@ApiOperation(value = "For putting books wishlist to cart")
 	@PutMapping("/wishlist/to/cart")
-	public ResponseDTO addFromWishlistToCart(@RequestParam Long bookId, @RequestHeader("token") String token) {
+	public ResponseDTO addFromWishlistToCart(@RequestParam Long bookId, @RequestHeader("token") String token) throws UserException {
 		return cartService.addFromWishlistToCart(bookId, token);
 	}
 
-	@ApiOperation(value = "For removing entire Cart")
+	@ApiOperation(value = "For removing book from the cart")
 	@DeleteMapping("/book")
 	public ResponseEntity<ResponseDTO> removeFromCart(@RequestParam Long bookId, @RequestHeader String token)
-			throws BookStoreException, CartException {
+			throws BookStoreException, CartException, UserException {
 		List<CartData> userCart = cartService.removeItem(bookId, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Successfully removed book from cart", userCart),
 				HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "For removing book from the cart")
+	@ApiOperation(value = "For removing entire Cart")
 	@DeleteMapping("/all")
-	public ResponseEntity<ResponseDTO> removeAllItem(@RequestHeader String token) throws CartException {
+	public ResponseEntity<ResponseDTO> removeAllItem(@RequestHeader String token) throws CartException, UserException {
 		String responseMessage = cartService.deleteAll(token);
 		return new ResponseEntity<>(new ResponseDTO(200, responseMessage), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "For decrementing the book quantity")
 	@DeleteMapping("/item")
-	public ResponseEntity<ResponseDTO> subtractItem(@RequestParam Long bookId, @RequestHeader String token) {
+	public ResponseEntity<ResponseDTO> subtractItem(@RequestParam Long bookId, @RequestHeader String token) throws UserException {
 		List<CartData> carts = cartService.subtractItem(bookId, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Book quantity decremented successfully", carts),
 				HttpStatus.OK);
@@ -107,7 +107,7 @@ public class CartController {
 	@ApiOperation(value = "For deleting book from wishlist")
 	@DeleteMapping("/Wishlist/book")
 	public ResponseEntity<ResponseDTO> deleteFromWishlist(@RequestParam Long bookId,
-			@RequestHeader("token") String token) {
+			@RequestHeader("token") String token) throws UserException {
 		List<CartData> cart = cartService.deleteFromWishlist(bookId, token);
 		return new ResponseEntity<>(new ResponseDTO(200, "Book removed from wishlist", cart), HttpStatus.OK);
 	}

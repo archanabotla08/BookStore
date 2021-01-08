@@ -1,5 +1,6 @@
 package com.blz.bookstore.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +37,16 @@ public @Data class UserModel {
 	private String mobileNumber;
 	private String password;
 	private boolean isVerify;
+	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date_and_time")
+	public Date createdDateAndTime;
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_login")
+	private Date updatedDateAndTime;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "book_Id")

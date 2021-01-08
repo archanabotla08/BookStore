@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blz.bookstore.dto.EmailObject;
+import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.CartData;
 import com.blz.bookstore.model.CustomerModel;
 import com.blz.bookstore.model.OrderData;
@@ -40,13 +41,13 @@ public class OrderService implements IOrderService {
 //	@Autowired
 //	private RabbitMQSender rabbitMQSender;
 
-	public OrderData getOrderSummary(String token) {
+	public OrderData getOrderSummary(String token) throws UserException {
 		Long userId = JwtGenerator.decodeJWT(token);
 		Optional<OrderData> userOrders = orderRepository.findByUserId(userId);
 		return userOrders.get();
 	}
 
-	public Long placeOrder(String token) {
+	public Long placeOrder(String token) throws UserException {
 		Long orderId = generateOrderId();
 		Long userId = JwtGenerator.decodeJWT(token);
 		List<CartData> cart = cartRepository.findByUserId(userId);

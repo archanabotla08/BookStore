@@ -1,9 +1,15 @@
 package com.blz.utility;
 
 import org.springframework.stereotype.Service;
+
+import com.blz.bookstore.exceptions.UserException;
+
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
@@ -38,8 +44,12 @@ public class JwtGenerator {
 		return builder.compact();
 	}
 
-	public static Long decodeJWT(String jwt) {
-		return Long.parseLong(Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
-				.parseClaimsJws(jwt).getBody().getId());
+	public static Long decodeJWT(String jwt) throws UserException {
+		try {
+			return Long.parseLong(Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
+					.parseClaimsJws(jwt).getBody().getId());
+					}catch(MalformedJwtException | SignatureException e) {
+			throw new UserException("Token is incorrect");
+		}
 			}
 }

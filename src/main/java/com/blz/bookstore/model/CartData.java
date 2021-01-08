@@ -11,11 +11,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "cart_details")
 public @Data class CartData {
 
@@ -42,9 +44,9 @@ public @Data class CartData {
 	@Column(name = "image")
 	private String image;
 
-	@Column(name = "book_details")
+	@Column(name = "book_details", columnDefinition = "TEXT")
 	private String bookDetails;
-
+	
 	@Column(name = "is_in_wishlist")
 	private Boolean isInWishList;
 
