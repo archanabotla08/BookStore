@@ -1,0 +1,96 @@
+<div fxLayout="row" fxFlex="50" flex-wrap wrap fxFlex.xs="100">
+  <mat-card class="card">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-evenly stretch"
+      dir="ltr"
+      fxLayoutGap="3%"
+    >
+      <div class="header">REGISTRATION FORM</div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="field">NAME</div>
+        <div fxFlex="75">
+          <mat-form-field fxFlex="100" appearance="outline" class="full-width">
+            <mat-label>NAME</mat-label>
+            <input
+              matInput
+              class="matInput"
+              autocomplete="off"
+              placeholder="NAME"
+              formControlName="name"
+            />
+            <mat-error> Invalid Name! </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="field">EMAIL</div>
+        <div fxFlex="75">
+          <mat-form-field fxFlex="100" appearance="outline" class="full-width">
+            <mat-label>EMAIL</mat-label>
+            <input
+              matInput
+              class="matInput"
+              autocomplete="off"
+              placeholder="EMAIL"
+              formControlName="email"
+            />
+            <mat-error> Invalid Email! </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="field">MOBILE NO.</div>
+        <div fxFlex="75">
+          <mat-form-field fxFlex="100" appearance="outline" class="full-width">
+            <mat-label>MOBILE NO.</mat-label>
+            <input
+              matInput
+              class="matInput"
+              autocomplete="off"
+              placeholder="MOBILE NO."
+              formControlName="mobileno"
+            />
+            <mat-error> Invalid Mobile Number! </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="field">PASSWORD</div>
+        <div fxFlex="75">
+          <mat-form-field fxFlex="100" appearance="outline" class="full-width">
+            <mat-label>PASSWORD</mat-label>
+            <input
+              matInput
+              class="matInput"
+              autocomplete="off"
+              placeholder="PASSWORD"
+              formControlName="password"
+            />
+            <mat-error> Invalid Password! </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div
+        class="button-container"
+        fxLayout="row"
+        fxLayoutAlign="end space-between"
+        dir="ltr"
+        fxLayoutGap="5%"
+      >
+
+      <input type="button" value="REST">
+        <button  class="end-btn"><a href="/home">SIGN UP</a></button>
+
+      </div>
+      <div class="linker">
+        <P>Already a memeber? <a href="/login">SIGN IN</a></P>
+      </div>
+    </div>
+  </mat-card>
+</div>

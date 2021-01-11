@@ -1,0 +1,70 @@
+<app-plain-header></app-plain-header>
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-card class="my-card">
+    <mat-toolbar>
+      <span class="title-center">SIGN IN FORM</span>
+    </mat-toolbar>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Email/Name</mat-label>
+        <input
+          type="text"
+          class="textfield"
+          formControlName="loginid"
+          placeholder="username or mail or phone"
+          rows="3"
+          maxlength="300"
+          matInput
+          autocomplete="off"
+        />
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error>*name is required</mat-error>
+        <mat-error>*provide minimum 4 characters</mat-error>
+        <mat-error>provide less than 15 characters</mat-error> </mat-form-field
+      ><br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="password"
+          rows="3"
+          maxlength="300"
+          matInput
+          style="background: none"
+        />
+
+        <mat-error>*password is required</mat-error>
+        <mat-error>provide a strong password</mat-error>
+        <mat-error>provide password less than 12 characters</mat-error>
+      </mat-form-field>
+      <div class="right">
+        <a href="forgot">forgot password?</a>
+      </div>
+
+      <div>
+        <button class="signup" mat-button mat-dialog-close>
+          <a href="home">SIGN IN</a>
+        </button>
+        <div></div>
+        <ng-template #navigate>
+          <button mat-raised-button class="loginbutton" type="submit">
+            Login
+          </button>
+        </ng-template>
+        <ng-template #popupbtn>
+          <button
+            mat-raised-button
+            mat-dialog-close
+            class="loginbutton"
+            type="submit"
+          >
+            Login
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </mat-card>
+</div>
+<app-footer><</app-footer>

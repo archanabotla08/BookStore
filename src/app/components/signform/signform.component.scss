@@ -1,0 +1,71 @@
+@import "../../../styles.scss";
+.card {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 600px;
+  max-height: 800px;
+  background-color: rgb(255, 255, 255);
+}
+
+.header {
+  text-align: center;
+  width: -webkit-fill-available;
+  padding-bottom: 1%;
+  font: normal normal bold 28px/37px Roboto;
+  letter-spacing: 0px;
+  color: $toolbar-cart-color;
+  text-transform: capitalize;
+  opacity: 1;
+}
+
+.field {
+  font-size: 18px;
+  font: bold normal normal 18px/24px Roboto;
+  letter-spacing: 0px;
+  color: $toolbar-cart-color;
+  opacity: 1;
+}
+.full-width {
+  width: 100%;
+}
+.button-container {
+  margin-left: 110px;
+}
+input[type="button"] {
+  padding: 10px 30px;
+  margin: 5px 40px;
+  border-radius: 5px;
+}
+input[type="button"]:hover {
+  background-color: $toolbar-cart-color;
+  color: white;
+}
+a:hover {
+  color: brown;
+  text-decoration: none;
+}
+.end-btn {
+  border-radius: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  color: white;
+}
+.end-btn:hover a {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  color: brown;
+}
+a:link,
+a:visited {
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.linker {
+  margin-left: 200px;
+}
+p {
+  color: $toolbar-cart-color;
+}

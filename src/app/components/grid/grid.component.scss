@@ -1,0 +1,40 @@
+@import "../../../styles.scss";
+
+.grid-container {
+  margin: 0 0 0 200px;
+  width: 1155px;
+}
+
+mat-grid-tile {
+  background: white;
+}
+.b-color {
+  padding: 5px 5px;
+  margin: 0 10px;
+  background-color: $toolbar-cart-color;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+}
+.b-default {
+  padding: 5px 5px;
+  background-color: white;
+  border-radius: 5px;
+}
+.mat-grid-tile .mat-figure {
+  justify-content: flex-start !important ;
+  align-items: flex-start !important;
+}
+.card {
+  max-width: 200px;
+  background-color: $grid-background-color;
+}
+
+.card-img {
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 130px;
+  height: 170px;
+}
