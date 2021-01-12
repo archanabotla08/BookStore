@@ -15,7 +15,7 @@ export class SharedDataService {
 
     private messageSource = new BehaviorSubject(this.dataDetails);
     private relevanceSource = new BehaviorSubject(this.dataDetails1);
-    
+
 
     currentMessage = this.messageSource.asObservable();
     changeMessage(message: string) {
@@ -23,7 +23,7 @@ export class SharedDataService {
     }
 
     currentRelevance = this.relevanceSource.asObservable();
-    changeRelevance(message : string){
+    changeRelevance(message: string) {
         this.relevanceSource.next(message);
     }
 }

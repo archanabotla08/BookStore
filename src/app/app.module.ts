@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './pages/home/home.component';
 import { PlainHeaderComponent } from './components/plain-header/plain-header.component';
 import { SignformComponent } from './components/signform/signform.component';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -29,6 +29,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
+import { CartComponent } from './pages/cart/cart.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { SuccessPageComponent } from './pages/success-page/success-page.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,9 @@ import { ToastrModule } from 'ngx-toastr';
     RegistrationComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    CartComponent,
+    ResetPasswordComponent,
+    SuccessPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,8 +67,10 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
     
+    MatRadioModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

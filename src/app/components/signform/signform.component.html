@@ -100,7 +100,7 @@
         <button  class="end-btn submit" (click)="register()">SIGN UP</button>
       </div>
       <div class="linker">
-        <P>Already a memeber? <a href="/login">SIGN IN</a></P>
+        <P>Already a memeber? <a [routerLink]="['/login']">SIGN IN</a></P>
       </div>
     </div>
   </mat-card>

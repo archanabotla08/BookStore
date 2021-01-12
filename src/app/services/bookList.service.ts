@@ -19,7 +19,7 @@ export class BookListService {
   getAllBooksListCount(): Observable<any> {
     return this.httpClient.get<any>(`${this.getUrl}count`);
   }
-  
+
   getAllBooksListCountAscendingOrder(): Observable<any> {
     return this.httpClient.get<any>(`${this.getUrl}sort/price/ascending`);
   }
@@ -30,22 +30,22 @@ export class BookListService {
   deleteBookRecord(id: number): Observable<any> {
     return this.httpClient.delete(`${this.getUrl}delete/${id}`);
   }
-  
-//   getEmployeePayrollById(id: number): Observable<any> {
-//     return this.httpClient.get<any>(`${this.getUrl}get/${id}`);
-//   }
+
+  //   getEmployeePayrollById(id: number): Observable<any> {
+  //     return this.httpClient.get<any>(`${this.getUrl}get/${id}`);
+  //   }
 
 
 
-//   getUserrRegistration(data: any): Observable<Registration> {
-//     return this.httpClient.post<Registration>(`${this.getUrl}register`, data);
-//   }
+  //   getUserrRegistration(data: any): Observable<Registration> {
+  //     return this.httpClient.post<Registration>(`${this.getUrl}register`, data);
+  //   }
 
-//   getUserLogin(data: any): Observable<Login> {
-//     return this.httpClient.post<Login>(`${this.getUrl}login`, data);
-//   }
-//   updateEmployeePayRollRecord(data: any) {
-//     var id = data.id;
-//     return this.httpClient.put<EmployeePayRoll>(`${this.getUrl}update/${id}`, data);
-//   }
+  //   getUserLogin(data: any): Observable<Login> {
+  //     return this.httpClient.post<Login>(`${this.getUrl}login`, data);
+  //   }
+  //   updateEmployeePayRollRecord(data: any) {
+  //     var id = data.id;
+  //     return this.httpClient.put<EmployeePayRoll>(`${this.getUrl}update/${id}`, data);
+  //   }
 }

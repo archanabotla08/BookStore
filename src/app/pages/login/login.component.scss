@@ -35,8 +35,16 @@ a {
   padding-right: 15px;
 }
 .signup {
-  padding: 5px 15px;
+  padding: 10px 40px;
   margin-left: 40%;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgb(184, 53, 53);
+  color: white;
+}
+.signup:hover {
+  background-color: brown;
+  color: white;
 }
 .mat-toolbar {
   background-color: rgb(179, 59, 59);

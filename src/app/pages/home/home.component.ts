@@ -13,16 +13,16 @@ export class HomeComponent implements OnInit {
 
   bookList: any[] = [];
   bookListCount: any;
-  ascendingPriceBookList : any;
+  ascendingPriceBookList: any;
   descendingPricebookList: any;
   relevanceValue: any;
   constructor(
     private bookListService: BookListService,
     private router: Router,
-    private sharedDataService : SharedDataService,
-    private toastr : ToastrService
-  ) { 
-   
+    private sharedDataService: SharedDataService,
+    private toastr: ToastrService
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -32,50 +32,50 @@ export class HomeComponent implements OnInit {
   getBookListData() {
     this.bookListService.getAllBooksList().subscribe(response => {
       this.bookList = response.data;
-      console.log("response BookList",this.bookList);
+      console.log("response BookList", this.bookList);
     });
   }
 
-  getBookListCount(){
+  getBookListCount() {
     this.bookListService.getAllBooksListCount().subscribe(response => {
       this.bookListCount = response.data;
     })
   }
 
-  getListOfBookByRelevance(event: any){
-    console.log("relevance value: " ,event.value);
+  getListOfBookByRelevance(event: any) {
+    console.log("relevance value: ", event.value);
     this.relevanceValue = event.value
     this.ascendingPriceBookList = this.sortByRelevance[0];
     this.descendingPricebookList = this.sortByRelevance[1];
-    
 
-    if(this.relevanceValue == this.ascendingPriceBookList){
+
+    if (this.relevanceValue == this.ascendingPriceBookList) {
       this.bookListService.getAllBooksListCountAscendingOrder().subscribe(response => {
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           this.toastr.success(response.message);
           this.bookList = response.data;
-        }else{
+        } else {
           this.toastr.error(response.message);
-        }   
+        }
       })
-    }else if(this.relevanceValue == this.descendingPricebookList){
+    } else if (this.relevanceValue == this.descendingPricebookList) {
       this.bookListService.getAllBooksListCountDescendingOrder().subscribe(response => {
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           this.toastr.success(response.message);
           this.bookList = response.data;
-        }else{
+        } else {
           this.toastr.error(response.message);
         }
       })
     }
-  
-   }
 
-   sortByRelevance: string[] = [
-     'Price: Low to High', 'Price: High to Low', 'Newest Arrivals'
-   ]
-   
-  
-   
+  }
+
+  sortByRelevance: string[] = [
+    'Price: Low to High', 'Price: High to Low', 'Newest Arrivals'
+  ]
+
+
+
 
 }

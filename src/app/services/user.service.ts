@@ -16,18 +16,6 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-//   getAllEmployeePayRollList(): Observable<any> {
-//     return this.httpClient.get<any>(`${this.getUrl}get`);
-//   }
-  
-//   getEmployeePayrollById(id: number): Observable<any> {
-//     return this.httpClient.get<any>(`${this.getUrl}get/${id}`);
-//   }
-
-//   deleteEmployeePayrollRecord(id: number): Observable<any> {
-//     return this.httpClient.delete(`${this.getUrl}delete/${id}`);
-//   }
-
   getUserrRegistration(data: any): Observable<Registration> {
     return this.httpClient.post<Registration>(`${this.getUrl}register`, data);
   }
