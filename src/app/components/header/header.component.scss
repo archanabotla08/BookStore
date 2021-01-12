@@ -1,0 +1,46 @@
+@import "../../../styles.scss";
+.toolbar {
+  background-color: $toolbar-cart-color;
+}
+.toolbar-items {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.logoimage {
+  float: left;
+  opacity: 1;
+  padding-top: 5px;
+}
+.logotext {
+  text-align: left;
+  font: normal normal normal 20px/26px Roboto;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  float: left;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.searchbox {
+  font-family: Arial, FontAwesome;
+  padding: 5px 0px;
+  background: #fff;
+  border: 0 none;
+  color: #807e7e;
+  float: left;
+  height: 38px;
+  line-height: 26px;
+  font-size: 14px;
+  margin: 0 0 0 200px;
+  outline: medium none;
+  padding: 6px 14px;
+  width: 500px;
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+}
+.cart {
+  float: left;
+  margin: 0 0 0 300px;
+  color: white;
+  padding-top: 5px;
+}

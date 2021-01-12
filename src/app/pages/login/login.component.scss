@@ -1,0 +1,68 @@
+.my-card {
+  width: 35%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  margin-left: 30.5%;
+  margin-right: 7%;
+}
+.mat-form-field {
+  width: 100%;
+  padding-top: 5%;
+}
+a {
+  font-size: medium;
+  text-decoration: none;
+  color: rgb(179, 59, 59);
+}
+
+.mat-raised-button {
+  margin-top: 10px;
+  background-color: rgb(179, 59, 59);
+  color: aliceblue;
+}
+
+.mat-button {
+  color: rgb(179, 59, 59);
+  margin-bottom: -50%;
+  border-radius: 30px;
+  height: 40px;
+}
+.loginbutton {
+  margin-left: 30%;
+  padding-right: 15px;
+}
+.signup {
+  padding: 10px 40px;
+  margin-left: 40%;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgb(184, 53, 53);
+  color: white;
+}
+.signup:hover {
+  background-color: brown;
+  color: white;
+}
+.mat-toolbar {
+  background-color: rgb(179, 59, 59);
+  color: white;
+}
+
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  padding-top: 5%;
+}
+
+.right {
+  margin-top: 1%;
+  margin-left: 2%;
+  color: rgb(179, 59, 59);
+}
+input[type="text"] {
+  width: 100%;
+}

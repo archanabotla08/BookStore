@@ -1,0 +1,52 @@
+<app-header></app-header> <br /><br />
+<div class="main-div" fxLayout="column" fxLayoutAlign="space-around center">
+  <div class="successImageDiv" fxLayoutAlign="center">
+    <img src="../../../assets/images/success/SuccessPage.JPG" />
+  </div>
+  <div class="successdisc" fxLayoutAlign="center">
+    <span>Hurray!!!your order is confirmed</span>
+    <span>the order id is ABC save the order id for</span>
+    <span>further communication...</span>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center-center" class="successtable">
+    <table
+      class="table table-bordered"
+      style="font-size: 110%; text-align: center; margin-top: 4%"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Email us</th>
+          <th scope="col">Contact us</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>admin@bookstore.com</td>
+          <td>+9199887744</td>
+          <td>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+            excepturi.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    style="margin-top: 2%"
+  >
+    <div class="shopmore">
+      <button
+        mat-raised-button
+        style="background-color: rgb(115, 115, 226); color: aliceblue"
+        [routerLink]="['/home']"
+      >
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
