@@ -40,12 +40,11 @@
         <mat-error>provide password less than 12 characters</mat-error>
       </mat-form-field>
       <div class="right">
-        <a href="forgot">forgot password?</a>
+        <a [routerLink]="['/forgot']">forgot password?</a>
       </div>
 
       <div>
-        <button class="signup" mat-button mat-dialog-close>
-          <a href="home">SIGN IN</a>
+        <button class="signup" mat-button mat-dialog-close [routerLink]="['/home']">SIGN IN
         </button>
         <div></div>
         <ng-template #navigate>

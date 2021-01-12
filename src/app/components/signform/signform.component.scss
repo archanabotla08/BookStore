@@ -37,6 +37,15 @@ input[type="button"] {
   margin: 5px 40px;
   border-radius: 5px;
 }
+button {
+  padding: 10px 30px;
+  margin: 5px 40px;
+  border-radius: 5px;
+}
+.end-btn:hover {
+  background-color: $toolbar-cart-color;
+  color: white;
+}
 input[type="button"]:hover {
   background-color: $toolbar-cart-color;
   color: white;
@@ -49,7 +58,6 @@ a:hover {
   border-radius: 5px;
   margin-left: 5%;
   margin-right: 5%;
-  color: white;
 }
 .end-btn:hover a {
   background-color: whitesmoke;

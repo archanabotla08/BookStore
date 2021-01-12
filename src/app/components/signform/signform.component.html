@@ -84,12 +84,12 @@
         fxLayoutGap="5%"
       >
 
-      <input type="button" value="REST">
-        <button  class="end-btn"><a href="/home">SIGN UP</a></button>
+      <input type="button" value="RESET">
+        <button  class="end-btn" [routerLink]="['/home']">SIGN UP</button>
 
       </div>
       <div class="linker">
-        <P>Already a memeber? <a href="/login">SIGN IN</a></P>
+        <P>Already a memeber? <a [routerLink]="['/login']">SIGN IN</a></P>
       </div>
     </div>
   </mat-card>
