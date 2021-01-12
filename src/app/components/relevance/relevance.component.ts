@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SharedDataService } from 'src/app/services/sharedData.service';
 
 @Component({
   selector: 'app-drop',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelevanceComponent implements OnInit {
 
-  constructor() { }
+  bookListCount : any;
+  bookRelevanceDetail !: FormGroup;
+  relevance: any;
+  constructor(
+    private sharedDataService : SharedDataService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
-  }
 
+   
+   console.log();
+  
+    console.log("relevance :" , this.relevance);
+  }
+  
+  
 }

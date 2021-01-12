@@ -1,9 +1,8 @@
-<div style="margin: 10px 0">
+<!-- <div style="margin: 10px 0" [formGroup]="bookRelevanceDetail">
   <label class="subhead">Books</label>
-  <label>(numbers)</label>
-  <mat-select class="dropdown">
-    <mat-option value="1">Option 1</mat-option>
-    <mat-option value="2">Option 2</mat-option>
-    <mat-option value="3">Option 3</mat-option>
+  <label>({{ bookListCount }} Items)</label>
+  <mat-select class="dropdown" formControlName="relevance"  appearance="outline"  placeholder="Sort by relevance"
+   style="font-size: 16px;text-align: center; padding-top: 10px;" (selectionChange)="getListOfBookByRelevance($event)">
+    <mat-option *ngFor="let relevance of sortByRelevance" [value]="relevance">{{relevance}}</mat-option>
   </mat-select>
-</div>
+</div> -->

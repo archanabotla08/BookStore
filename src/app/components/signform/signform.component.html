@@ -1,4 +1,4 @@
-<div fxLayout="row" fxFlex="50" flex-wrap wrap fxFlex.xs="100">
+<div fxLayout="row" fxFlex="50" flex-wrap wrap fxFlex.xs="100"  [formGroup]="userDetail">
   <mat-card class="card">
     <div
       fxLayout="column"
@@ -8,19 +8,22 @@
     >
       <div class="header">REGISTRATION FORM</div>
 
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="space-between center" >
         <div class="field">NAME</div>
         <div fxFlex="75">
           <mat-form-field fxFlex="100" appearance="outline" class="full-width">
-            <mat-label>NAME</mat-label>
+            <mat-label>FULL NAME</mat-label>
             <input
               matInput
               class="matInput"
               autocomplete="off"
-              placeholder="NAME"
-              formControlName="name"
+              placeholder="FULL NAME"
+              formControlName="fullName"
             />
-            <mat-error> Invalid Name! </mat-error>
+            <mat-error fxFlex
+                  *ngIf="!userDetail.controls['fullName'].valid && userDetail.controls['fullName'].touched">
+                  Invalid Name! 
+                </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -34,10 +37,13 @@
               matInput
               class="matInput"
               autocomplete="off"
-              placeholder="EMAIL"
-              formControlName="email"
+              placeholder="EMAILID"
+              formControlName="emailId"
             />
-            <mat-error> Invalid Email! </mat-error>
+            <mat-error fxFlex
+            *ngIf="!userDetail.controls['emailId'].valid && userDetail.controls['emailId'].touched">
+            Invalid Email Id! 
+          </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -52,9 +58,12 @@
               class="matInput"
               autocomplete="off"
               placeholder="MOBILE NO."
-              formControlName="mobileno"
+              formControlName="mobileNumber"
             />
-            <mat-error> Invalid Mobile Number! </mat-error>
+            <mat-error fxFlex
+            *ngIf="!userDetail.controls['mobileNumber'].valid && userDetail.controls['mobileNumber'].touched">
+            Invalid Mobile Number! 
+          </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -71,7 +80,10 @@
               placeholder="PASSWORD"
               formControlName="password"
             />
-            <mat-error> Invalid Password! </mat-error>
+            <mat-error fxFlex
+            *ngIf="!userDetail.controls['password'].valid && userDetail.controls['password'].touched">
+            Invalid Password! 
+          </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -85,8 +97,7 @@
       >
 
       <input type="button" value="REST">
-        <button  class="end-btn"><a href="/home">SIGN UP</a></button>
-
+        <button  class="end-btn submit" (click)="register()">SIGN UP</button>
       </div>
       <div class="linker">
         <P>Already a memeber? <a href="/login">SIGN IN</a></P>
