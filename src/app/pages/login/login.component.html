@@ -24,7 +24,7 @@
           <input matInput formControlName="password" placeholder="password" rows="3" maxlength="300" matInput
             style="background: none" />
           <mat-error fxFlex *ngIf="!loginDetail.controls['password'].valid && loginDetail.controls['password'].touched">
-            Invalid EmailId!
+            Invalid password!
           </mat-error>
         </mat-form-field>
 
@@ -33,7 +33,11 @@
         </div>
 
         <div>
+         
           <button class="signup submit" mat-button mat-dialog-close (click)="login()">SIGN IN</button>
+        </div>
+        <div class="linker">
+          <P>New a member? <a [routerLink]="['/registration']">SIGN UP</a></P>
         </div>
     </form>
   </mat-card>

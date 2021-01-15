@@ -7,10 +7,15 @@
     <mat-option *ngFor="let relevance of sortByRelevance" [value]="relevance">{{relevance}}</mat-option>
   </mat-select>
 </div>
+<!-- <app-drop></app-drop> -->
 <div class="grid-container">
-    <mat-grid-list cols="4" rowHeight=".7:1" [gutterSize]="'30px'" *ngFor="let book of bookList"> 
+  <button mat-raised-button color="primary"
+      matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+    Action
+  </button>
+    <mat-grid-list cols="4" rowHeight=".7:1" [gutterSize]="'30px'" > 
       <!--tile 1-->
-      <mat-grid-tile>
+      <mat-grid-tile *ngFor="let book of bookList">
         <mat-card class="card">
           <mat-card-header> </mat-card-header>
           <img
@@ -29,8 +34,8 @@
           </mat-card-content>
           <mat-card-actions>
             <div>
-              <input type="button" value="ADD TO BAG" class="b-color" />
-              <input type="button" value="WISHLIST" class="b-default" />
+              <input type="button" value="ADD TO BAG" class="b-color" (click)="addBookToCart(book.bookId)"/>
+              <input type="button" value="WISHLIST" class="b-color" (click)="addBookToWishList(book.bookId)" />
             </div>
           </mat-card-actions>
         </mat-card>

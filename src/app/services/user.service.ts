@@ -26,8 +26,7 @@ export class UserService {
   getForgetPassword(data: any): Observable<ForgetPassword> {
     return this.httpClient.post<ForgetPassword>(`${this.getUrl}forgetPassword`, data);
   }
-
-  getResetPassword(data: any): Observable<ResetPassword> {
-    return this.httpClient.post<ResetPassword>(`${this.getUrl}resetPassword`, data);
+  getResetPassword(data: any, token: any): Observable<ResetPassword> {
+    return this.httpClient.post<ResetPassword>(`${this.getUrl}resetPassword/${token}`, data);
   }
 }

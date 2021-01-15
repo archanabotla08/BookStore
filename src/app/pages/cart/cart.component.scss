@@ -3,8 +3,13 @@
   margin-left: 10%;
   margin-top: 1%;
 }
-
+.mat-expansion-panel {
+ margin-left: 20%;
+ margin-right: 20%;
+}
 .form {
+  display: flex;
+  flex-direction: row;
   width: 80%;
   margin-top: 3%;
   margin-left: 3%;
@@ -56,6 +61,7 @@ span.author-name {
   border-radius: 20px;
   margin-left: 5px;
   margin-right: 5px;
+
   &::ng-deep .mat-button-wrapper {
     line-height: 14px;
     padding: 0;
@@ -67,10 +73,11 @@ span.author-name {
 }
 mat-mini-fab {
   height: 24px;
+  
 }
 .button-remove {
   outline: none;
-  background-color: #fc3b3b;
+  background-color:white;
   border: 1px solid rgb(161, 159, 159);
   opacity: 1;
   height: 18px;
@@ -78,6 +85,7 @@ mat-mini-fab {
   box-shadow: initial;
   border-radius: 20px;
   margin-top: -25%;
+
 }
 input.quantity-field {
   width: 20%;
@@ -98,7 +106,7 @@ input::-webkit-inner-spin-button {
 }
 .input-group {
   margin-left: 19%;
-  margin-top: -12.5%;
+  margin-top: -10.5%;
   width: 40%;
 }
 .button-placeorder {
@@ -114,25 +122,25 @@ input::-webkit-inner-spin-button {
   margin-left: 75%;
 }
 
-.row3 {
-  float: right;
-  margin-top: -74px;
-}
-.row1 {
-  float: right;
-  margin-top: 20px;
-  // margin-right: 120px;
-}
-
-.row2 {
-  float: right;
-  margin-top: -50px;
-  //margin-right: 120px;
-}
+// .row3 {
+//   float: right;
+//   margin-top: -63px;
+// }
+// .row1 {
+//   float: right;
+//   margin-top: 20px;
+//   // margin-right: 120px;
+// }
+// 
+// .row2 {
+//   float: right;
+//   margin-top: -50px;
+//   //margin-right: 120px;
+// }
 
 .mat-form-field {
-  width: 300px;
-  height: 10px;
+  width: 40%;
+  height: 5%;
 }
 
 .child1 {
@@ -189,3 +197,4 @@ input::-webkit-inner-spin-button {
     font-size: 10px;
   }
 }
+

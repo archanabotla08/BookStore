@@ -1,297 +1,199 @@
 <app-header></app-header>
-<div class="accordian">
+<div class="accordion">
   <mat-accordion>
-    <mat-expansion-panel
-      [expanded]="step === 0"
-      (opened)="setStep(0)"
-      hideToggle
-    >
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>Cart Details</mat-panel-title>
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
-
-      <div fxLayout="column">
-        <span class="My-cart"><b>My Cart (1)</b></span>
+      <div fxLayout="column" *ngFor="let book of booksListInCart">
+        <span class="My-cart"><b>My Cart ({{book.id}})</b></span>
         <div fxLayout="column" fxLayoutAlign="space-around start">
           <div class="book" fxLayout="row">
             <div class="book-image">
-              <img src="assets/images/image11/image11.png" />
+              <img src="{{ book.image }}" />
             </div>
-
-            <div
-              fxLayout="column"
-              fxLayoutAlign="start start"
-              class="book-details"
-              fxLayoutGap="6%"
-            >
-              <span>book Name</span>
+            <div fxLayout="column" fxLayoutAlign="start start" class="book-details" fxLayoutGap="6%">
+              <span>{{ book.bookName }}</span>
               <br />
-              <span class="author-name">by Author</span>
+              <span class="author-name">{{ book.authorName }}</span>
               <br />
-              <span>Rs. book price</span>
+              <span>Rs. {{ book.price }}</span>
             </div>
           </div>
+          <div class="input-group" fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center">
 
-          <div
-            class="input-group"
-            fxLayout="row"
-            fxLayoutGap="2%"
-            fxLayoutAlign="start center"
-          >
-            <button
-              mat-mini-fab
-              class="button-minus"
-              [disabled]="true"
-              fxLayoutAlign="center start"
-              style="background-color: rgb(0, 140, 255)"
-            ></button>
-            <input
-              mat-input
-              type="number"
-              max="5"
-              min="1"
-              class="quantity-field"
-            />
-            <button
-              mat-mini-fab
-              class="button-plus"
-              style="background-color: rgb(255, 141, 47)"
-              fxLayoutAlign="center start"
-            ></button>
-            <button class="button-remove"></button>
+            <button mat-mini-fab class="button-minus"  fxLayoutAlign="center start" 
+            style="font-size: 14px;font-weight: bold;padding-right: 15px"
+              (click)="bookQuantityDecrement(book.bookId)">-
+            </button>
+           
+            <input mat-input type="number" class="quantity-field"  id="bookQuantity" [(ngModel)]="bookQuantity"  />
+           
+            <button mat-mini-fab class="button-plus" style="background-color: rgb(255, 141, 47)"
+              fxLayoutAlign="center start" style="font-size: 14px;font-weight: bold;padding-right: 15px;"
+              (click)="bookQuantityIncrement(book.bookId)">+</button>
+          
+              <button style="background-color: white;border: 0px;border-color: white;" (click)="deleteBookFromCart(book.bookId)">Remove</button>
+
           </div>
         </div>
         <div fxLayoutAlign="end">
           <mat-action-row>
-            <button
-              mat-button
-              class="button-placeorder"
-              fxLayoutAlign="center center"
-              mat-button
-              color="primary"
-              (click)="nextStep()"
-            >
-              <span style="font-size: small; height: 10px; color: white"
-                >PLACE ORDER</span
-              >
+            <button mat-button class="button-placeorder" fxLayoutAlign="center center" mat-button color="primary"
+              (click)="nextStep()">
+              <span style="font-size: medium; height: 5px; color: white" (click)="placeOrder(book.bookId)">PLACE ORDER</span>
             </button>
           </mat-action-row>
         </div>
       </div>
-
-      <!-- #docregion action-bar -->
-
-      <!-- #enddocregion action-bar -->
     </mat-expansion-panel>
-
-    <mat-expansion-panel
-      [expanded]="step === 1"
-      (opened)="setStep(1)"
-      hideToggle
-    >
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle >
       <mat-expansion-panel-header>
         <mat-panel-title>Customer Details</mat-panel-title>
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
 
-      <div class="form">
+      <div class="form" >
         <ng-container>
           <div style="margin: 0 auto; text-align: left">
-            <br />
-
-            <form>
+            <form [formGroup]="customerDetail">
               <mat-form-field appearance="outline">
                 <mat-label>*Name</mat-label>
-                <input
-                  matInput
-                  placeholder="Placeholder"
-                  formControlName="name"
-                  id="name"
-                  required
-                  #Myname
-                  (input)="(Myname.value)"
-                  style="background: none"
-                /> </mat-form-field
-              ><br /><br />
-
-              <div class="row3">
-                <mat-form-field appearance="outline">
-                  <mat-label>Phone Number</mat-label>
-                  <input
-                    matInput
-                    placeholder="Placeholder"
-                    formControlName="phone"
-                    id="phone"
-                    required
-                    #Myphn
-                    (input)="(Myphn.value)"
-                    style="background: none"
-                  /> </mat-form-field
-                ><br /><br />
-              </div>
+                <input matInput placeholder="FULL NAME" id="fullName" formControlName="fullName" required
+                  style="background: none" />
+                <mat-error fxFlex
+                  *ngIf="!customerDetail.controls['fullName'].valid && customerDetail.controls['fullName'].touched">
+                  Invalid Name!
+                </mat-error>
+              </mat-form-field>
+ 
+              <mat-form-field appearance="outline" style="margin-left: 2%;">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="PHONE NUMBER" formControlName="phoneNumber" id="phone" required
+                  style="background: none" />
+                <mat-error fxFlex
+                  *ngIf="!customerDetail.controls['phoneNumber'].valid && customerDetail.controls['phoneNumber'].touched">
+                  Invalid Phone number!
+                </mat-error>
+              </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Pin code</mat-label>
-                <input
-                  matInput
-                  placeholder="Placeholder"
-                  formControlName="pincode"
-                  id="pincode"
-                  required
-                  #Mypin
-                  (input)="(Mypin.value)"
-                  style="background: none"
-                />
-              </mat-form-field>
-
-              <div class="row1">
-                <mat-form-field appearance="outline">
+                <input matInput placeholder="PIN CODE" formControlName="pinCode" id="pinCode" required
+                  style="background: none" />
+                <mat-error fxFlex
+                  *ngIf="!customerDetail.controls['pinCode'].valid && customerDetail.controls['pinCode'].touched">
+                  Invalid Pincode!
+                </mat-error>
+              </mat-form-field> 
+              <mat-form-field appearance="outline" style="margin-left: 2%;">
                   <mat-label>Locality</mat-label>
-                  <input
-                    matInput
-                    placeholder="Placeholder"
-                    formControlName="locality"
-                    id="locality"
-                    required
-                    #Mylocal
-                    (input)="(Mylocal.value)"
-                    style="background: none"
-                  /> </mat-form-field
-                ><br /><br />
-              </div>
-              <br /><br />
-
-              <mat-form-field appearance="outline" fxFlexFill>
-                <mat-label>Address</mat-label>
-
-                <textarea
-                  rows="5"
-                  cols=""
-                  matInput
-                  formControlName="address"
-                  required
-                  #Myaddr
-                  (input)="(Myaddr.value)"
-                  style="background: none"
-                ></textarea>
-              </mat-form-field>
-              <br /><br />
-              <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-
-                <input
-                  matInput
-                  placeholder="Placeholder"
-                  formControlName="city"
-                  id="city"
-                  required
-                  #Mycity
-                  (input)="(Mycity.value)"
-                  style="margin-top: 10px"
-                /> </mat-form-field
-              ><br />
-              <div class="row2">
-                <mat-form-field appearance="outline">
-                  <mat-label>LandMark</mat-label>
-                  <input
-                    matInput
-                    placeholder="Placeholder"
-                    formControlName="landmark"
-                    id="landmark"
-                    required
-                    #landmark
-                    (input)="(landmark.value)"
-                    style="background: none"
-                  />
+                  <input matInput placeholder="LOCALITY" formControlName="locality"  id="locality" required style="background: none" />
+                  <mat-error fxFlex
+                *ngIf="!customerDetail.controls['locality'].valid && customerDetail.controls['locality'].touched">
+                Invalid Locality! 
+              </mat-error>
                 </mat-form-field>
-              </div>
-
-              <br /><br />
-              <mat-radio-group fxLayoutGap="5%" formControlName="type" required>
+                <mat-form-field style ="width: 100%;" appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput rows="5" placeholder="Addess" formControlName="address"  id="address" required style="background: none" ></textarea>
+                  <mat-error fxFlex
+                *ngIf="!customerDetail.controls['address'].valid && customerDetail.controls['address'].touched">
+                Invalid Locality! 
+              </mat-error>
+                </mat-form-field>
+                <br />
+                <mat-form-field appearance="outline" style="margin-left: 2%;">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="CITY" formControlName="city"  id="city" required style="background: none" />
+                  <mat-error fxFlex
+                *ngIf="!customerDetail.controls['city'].valid && customerDetail.controls['city'].touched">
+                Invalid City! 
+              </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 2%;">
+                  <mat-label>LandMark</mat-label>
+                  <input matInput placeholder="LANDMARK" formControlName="landmark"  id="landmark" required style="background: none" />
+                  <mat-error fxFlex
+                *ngIf="!customerDetail.controls['landmark'].valid && customerDetail.controls['landmark'].touched">
+                Invalid Landmark! 
+              </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 2%;">
+                  <mat-label>State</mat-label>
+                  <input matInput placeholder="STATE" formControlName="state"  id="state" required style="background: none" />
+                  <mat-error fxFlex
+                *ngIf="!customerDetail.controls['state'].valid && customerDetail.controls['state'].touched">
+                Invalid State! 
+              </mat-error>
+                </mat-form-field>
+                <br />
+              <mat-radio-group fxLayoutGap="5%" required formControlName="locationType" (change)="validatePrevious(1)">
                 <mat-radio-button value="home">Home</mat-radio-button>
-                <mat-radio-button value="work" style="margin-left: 10px"
-                  >Work</mat-radio-button
-                >
-                <mat-radio-button value="other" style="margin-left: 10px"
-                  >Other</mat-radio-button
-                > </mat-radio-group
-              ><br /><br />
+                <mat-radio-button value="work" style="margin-left: 10px">Work</mat-radio-button>
+                <mat-radio-button value="other" style="margin-left: 10px">Other</mat-radio-button>
+              </mat-radio-group>
+              <mat-error fxFlex style ="font-size: 80%; margin-left: 2%;"
+              *ngIf="!customerDetail.controls['locationType'].valid && customerDetail.controls['locationType'].touched">
+              Select One! 
+            </mat-error>
+              <br /><br />
             </form>
           </div>
         </ng-container>
       </div>
       <div fxLayoutAlign="end">
         <mat-action-row>
-          <button
-            mat-button
-            class="button-placeorder"
-            fxLayoutAlign="center center"
-            mat-button
-            color="primary"
-            (click)="nextStep()"
-          >
-            <span style="font-size: small; height: 10px; color: white"
-              >Continue</span
-            >
+          <button mat-button class="button-placeorder" fxLayoutAlign="center center" mat-button color="primary"
+           >
+            <span style="font-size: medium; height: 10px; color: white" (click)="addCustomerDetails()">Continue</span>
           </button>
         </mat-action-row>
       </div>
     </mat-expansion-panel>
-
-    <mat-expansion-panel
-      [expanded]="step === 2"
-      (opened)="setStep(2)"
-      hideToggle
-    >
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>Order Summary</mat-panel-title>
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
-      <div fxLayout="column">
+      <div fxLayout="column" *ngFor="let book of orderBookList">
         <div class="book" fxLayout="row">
           <div class="book-image">
-            <img src="assets/images/image11/image11.png" />
+            <img src="{{book.image}}"/>
           </div>
-
-          <div
-            fxLayout="column"
-            fxLayoutAlign="start start"
-            class="book-details"
-            fxLayoutGap="7%"
-          >
+          <div fxLayout="column" fxLayoutAlign="start start" class="book-details" fxLayoutGap="7%"  >{{book.bookName}}
+            <!-- <input matInput  formControlName="bookName" id="bookName"
+                  style="background: none" /> -->
             <br />
-            <span>book Name</span>
+            <span></span>
             <br />
-            <span class="author-name">by Author</span>
+            <span  class="author-name" >{{book.authorName}}
+              <!-- <input matInput formControlName="authorName" id="authorName"
+                  style="background: none" /> -->
+            </span>
             <br />
-            <span>Rs. book price</span>
+            <span >Rs. {{book.price}}
+              <!-- <input matInput formControlName="price" id="price"
+              style="background: none" />  -->
+            </span>
           </div>
         </div>
 
-        <div class="total-price" fxLayoutAlign="space-between center">
-          <span> Total Price: Rs. total price</span>
+        <div class="total-price" fxLayoutAlign="space-between center" name="fieldName" ngDefaultControl [(ngModel)]="totalPrice" id="price">
+          <span> Total Price: Rs. {{totalPrice}}
+            <!-- <input matInput [(ngModel)]="totalPrice" id="price"
+            style="background: none"/> -->
+          </span>
           <div>
             <mat-action-row>
-              <button
-                mat-button
-                class="button-placeorder"
-                fxLayoutAlign="center center"
-                mat-button
-                color="primary"
-              >
-                <span style="font-size: small; height: 10px; color: white"
-                  ><a
-                    style="text-decoration: none; color: white"
-                    href="/success"
-                    >CHECK OUT</a
-                  ></span
-                >
-              </button></mat-action-row
-            >
+              <button mat-button class="button-placeorder" fxLayoutAlign="center center" mat-button color="primary">
+                <span style="font-size: small; height: 10px; color: white"><a
+                    style="text-decoration: none; color: white" (click)="checkout(book.orderId,book.bookId)">CHECK OUT</a></span>
+              </button>
+            </mat-action-row>
           </div>
         </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<app-footer></app-footer>

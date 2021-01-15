@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookListService } from 'src/app/services/bookList.service';
+import { CartService } from 'src/app/services/cart.service';
 import { SharedDataService } from 'src/app/services/sharedData.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
     private bookListService: BookListService,
     private router: Router,
     private sharedDataService: SharedDataService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartService: CartService
   ) {
 
   }
@@ -28,19 +30,27 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getBookListData();
     this.getBookListCount();
+    this.getBookListCartCount();
+
+    console.log("token: ", localStorage.getItem('token'));
   }
+  //get booklist data
+
   getBookListData() {
     this.bookListService.getAllBooksList().subscribe(response => {
       this.bookList = response.data;
       console.log("response BookList", this.bookList);
     });
   }
+ //get booklist count
 
   getBookListCount() {
     this.bookListService.getAllBooksListCount().subscribe(response => {
       this.bookListCount = response.data;
     })
   }
+
+  //get list of book by relevance
 
   getListOfBookByRelevance(event: any) {
     console.log("relevance value: ", event.value);
@@ -75,7 +85,47 @@ export class HomeComponent implements OnInit {
     'Price: Low to High', 'Price: High to Low', 'Newest Arrivals'
   ]
 
+  //Add book to cart
 
+  addBookToCart(bookId: any) {
+    var token = localStorage.getItem('token');
+    console.log("token", token);
+    if (token == '' || token == null) {
+      this.toastr.error("User not logged in need to login");
+      this.router.navigate(["/login"]);
+    } else {
+      this.cartService.addBookToCart(bookId).subscribe(response => {
+        console.log(response);
+        this.sharedDataService.changeRelevance(bookId);
+        this.toastr.success(response.message);
+      }, error => { })
+    }
 
+  }
+
+  //get book list cart count
+
+  getBookListCartCount() {
+    this.cartService.getAllBooksListCountInCart().subscribe(response => {
+      this.toastr.success(response.message);
+    }, error => { })
+  }
+
+  //add book to wishlist
+  
+  addBookToWishList(bookId: any) {
+    var token = localStorage.getItem('token');
+    if (token == '' || token == null) {
+      this.toastr.error("User not logged in need to login");
+      this.router.navigate(["/login"]);
+    } else {
+      this.cartService.addBookToWishlist(bookId).subscribe(response => {
+        console.log("wishlist", response);
+        if (response.statusCode == 200) {
+          this.toastr.success(response.message);
+        }
+      }, error => { })
+    }
+  }
 
 }

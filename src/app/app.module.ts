@@ -33,7 +33,8 @@ import { CartComponent } from './pages/cart/cart.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthGuard } from './components/authGuard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -68,11 +69,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    
     MatRadioModule,
     MatExpansionModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

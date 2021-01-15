@@ -12,42 +12,47 @@ import { UserService } from 'src/app/services/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
   forgetPasswordDetail!: FormGroup;
-  
+
   constructor(
     private formBuilder: FormBuilder,
-    private userService : UserService,
+    private userService: UserService,
     private router: Router,
-    private toastr : ToastrService
+    private toastr: ToastrService
 
   ) { }
 
   ngOnInit(): void {
     this.forgetPasswordDetail = this.formBuilder.group({
-      emailId: [null,  Validators.compose([Validators.required,
-        Validators.pattern('')])]
+      emailId: [null, Validators.compose([Validators.required,
+      Validators.pattern('')])]
     });
   }
+  //forget password validation
   isFormValid(): boolean {
-    if(
-        this.forgetPasswordDetail.controls['emailId'].valid )
-    return true;
+    if (
+      this.forgetPasswordDetail.controls['emailId'].valid)
+      return true;
     this.forgetPasswordDetail.markAllAsTouched();
     return false;
   }
 
-  forgetPassword(){
-    if(!this.isFormValid())
-    return;
-  var forgetPasswordDTO = {
-    'emailId': this.forgetPasswordDetail.controls['emailId'].value
-  };
-  this.userService.getForgetPassword(forgetPasswordDTO).subscribe((response:any) => {
-    console.log("Response is ====> " + response);
-    if(response.statusCode == 200 ){
-      this.toastr.success(response.message);
-      // this.router.navigate(["/home"]);  
-    }
-  
-  })
+  //forget password 
+  forgetPassword() {
+    if (!this.isFormValid())
+      return;
+    var forgetPasswordDTO = {
+      'emailId': this.forgetPasswordDetail.controls['emailId'].value
+    };
+    this.userService.getForgetPassword(forgetPasswordDTO).subscribe((response: any) => {
+      console.log("Response is ====> " + response);
+      if (response.statusCode == 200) {
+        this.toastr.success(response.message);
+      }
+    }, error => {
+      var response = error.error;
+      if (response.statusCode != 200) {
+        this.toastr.error(response.message + " " + response.data);
+      }
+    })
   }
 }

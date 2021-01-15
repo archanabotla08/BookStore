@@ -2,7 +2,7 @@
   <label class="subhead">Books</label>
   <label>({{ bookListCount }} Items)</label>
   <mat-select class="dropdown" formControlName="relevance"  appearance="outline"  placeholder="Sort by relevance"
-   style="font-size: 16px;text-align: center; padding-top: 10px;" (selectionChange)="getListOfBookByRelevance($event)">
+   style="font-size: 16px;text-align: center; padding-top: 10px; z-index: 2;" (selectionChange)="getListOfBookByRelevance($event)">
     <mat-option *ngFor="let relevance of sortByRelevance" [value]="relevance">{{relevance}}</mat-option>
   </mat-select>
 </div> -->

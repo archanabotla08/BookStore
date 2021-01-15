@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
     return false;
   }
 
+  //get logged in
+  
   login() {
     if (!this.isFormValid())
       return;
@@ -44,16 +46,21 @@ export class LoginComponent implements OnInit {
       'emailId': this.loginDetail.controls['emailId'].value,
       'password': this.loginDetail.controls['password'].value
     };
-    console.log("USer dto in Login()", loginDTO)
     this.userService.getUserLogin(loginDTO).subscribe((response: any) => {
       console.log("Response is ====> " + response);
       if (response.statusCode == 200) {
-        localStorage.setItem("token", JSON.stringify(response.data));
+        localStorage.setItem("token", response.data);
         this.toastr.success(response.message);
         this.router.navigate(["/home"]);
-        // console.log("token :" , localStorage.getItem("token"));
       }
-    })
+    }, error => {
+      var response = error.error;
+      if (response.statusCode == 400) {
+        this.toastr.error(response.message + " " + response.data + " Please RegisterUser Before LogIn");
+      } else {
+        this.toastr.error(response.message + " " + response.data);
+      }
+    });
   }
 
 }

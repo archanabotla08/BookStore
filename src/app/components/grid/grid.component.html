@@ -1,6 +1,304 @@
-<div class="grid-container">
+<!-- <app-header></app-header>
+<div class="accordian">
+  <mat-accordion>
+    <mat-expansion-panel
+      [expanded]="step === 0"
+      (opened)="setStep(0)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>Cart Details</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="column">
+        <span class="My-cart"><b>My Cart (1)</b></span>
+        <div fxLayout="column" fxLayoutAlign="space-around start">
+          <div class="book" fxLayout="row">
+            <div class="book-image">
+              <img src="assets/images/image11/image11.png" />
+            </div>
+
+            <div
+              fxLayout="column"
+              fxLayoutAlign="start start"
+              class="book-details"
+              fxLayoutGap="6%"
+            >
+              <span>book Name</span>
+              <br />
+              <span class="author-name">by Author</span>
+              <br />
+              <span>Rs. book price</span>
+            </div>
+          </div>
+
+          <div
+            class="input-group"
+            fxLayout="row"
+            fxLayoutGap="2%"
+            fxLayoutAlign="start center"
+          >
+            <button
+              mat-mini-fab
+              class="button-minus"
+              [disabled]="true"
+              fxLayoutAlign="center start"
+              style="background-color: rgb(0, 140, 255)"
+            ></button>
+            <input
+              mat-input
+              type="number"
+              max="5"
+              min="1"
+              class="quantity-field"
+            />
+            <button
+              mat-mini-fab
+              class="button-plus"
+              style="background-color: rgb(255, 141, 47)"
+              fxLayoutAlign="center start"
+            ></button>
+            <button class="button-remove"></button>
+          </div>
+        </div>
+        <div fxLayoutAlign="end">
+          <mat-action-row>
+            <button
+              mat-button
+              class="button-placeorder"
+              fxLayoutAlign="center center"
+              mat-button
+              color="primary"
+              (click)="nextStep()"
+            >
+              <span style="font-size: small; height: 10px; color: white"
+                >PLACE ORDER</span
+              >
+            </button>
+          </mat-action-row>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel
+      [expanded]="step === 1"
+      (opened)="setStep(1)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>Customer Details</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form">
+        <ng-container>
+          <div style="margin: 0 auto; text-align: left">
+            <br />
+
+            <form>
+              <mat-form-field appearance="outline">
+                <mat-label>*Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  formControlName="name"
+                  id="name"
+                  required
+                  style="background: none"
+                /> </mat-form-field
+              ><br /><br />
+
+              <div class="row3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone Number</mat-label>
+                  <input
+                    matInput
+                    placeholder="Placeholder"
+                    formControlName="phone"
+                    id="phone"
+                    required
+                    style="background: none"
+                  /> </mat-form-field
+                ><br /><br />
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Pin code</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  formControlName="pincode"
+                  id="pincode"
+                  required
+                  style="background: none"
+                />
+              </mat-form-field>
+
+              <div class="row1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Locality</mat-label>
+                  <input
+                    matInput
+                    placeholder="Placeholder"
+                    formControlName="locality"
+                    id="locality"
+                    required
+                    style="background: none"
+                  /> </mat-form-field
+                ><br /><br />
+              </div>
+              <br /><br />
+
+              <mat-form-field appearance="outline" fxFlexFill>
+                <mat-label>Address</mat-label>
+
+                <textarea
+                  rows="5"
+                  cols=""
+                  matInput
+                  formControlName="address"
+                  required
+                  style="background: none"
+                ></textarea>
+              </mat-form-field>
+              <br /><br />
+              <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  formControlName="city"
+                  id="city"
+                  required
+                  style="margin-top: 10px"
+                /> </mat-form-field
+              ><br />
+              <div class="row2">
+                <mat-form-field appearance="outline">
+                  <mat-label>LandMark</mat-label>
+                  <input
+                    matInput
+                    placeholder="Placeholder"
+                    formControlName="landmark"
+                    id="landmark"
+                    required
+                    style="background: none"
+                  />
+                </mat-form-field>
+              </div>
+
+              <br /><br />
+              <mat-radio-group fxLayoutGap="5%" formControlName="type" required>
+                <mat-radio-button value="home">Home</mat-radio-button>
+                <mat-radio-button value="work" style="margin-left: 10px"
+                  >Work</mat-radio-button
+                >
+                <mat-radio-button value="other" style="margin-left: 10px"
+                  >Other</mat-radio-button
+                > </mat-radio-group
+              ><br /><br />
+            </form>
+          </div>
+        </ng-container>
+      </div>
+      <div fxLayoutAlign="end">
+        <mat-action-row>
+          <button
+            mat-button
+            class="button-placeorder"
+            fxLayoutAlign="center center"
+            mat-button
+            color="primary"
+            (click)="nextStep()"
+          >
+            <span style="font-size: small; height: 10px; color: white"
+              >Continue</span
+            >
+          </button>
+        </mat-action-row>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel
+      [expanded]="step === 2"
+      (opened)="setStep(2)"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>Order Summary</mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div fxLayout="column">
+        <div class="book" fxLayout="row">
+          <div class="book-image">
+            <img src="assets/images/image11/image11.png" />
+          </div>
+
+          <div
+            fxLayout="column"
+            fxLayoutAlign="start start"
+            class="book-details"
+            fxLayoutGap="7%"
+          >
+            <br />
+            <span>book Name</span>
+            <br />
+            <span class="author-name">by Author</span>
+            <br />
+            <span>Rs. book price</span>
+          </div>
+        </div>
+
+        <div class="total-price" fxLayoutAlign="space-between center">
+          <span> Total Price: Rs. total price</span>
+          <div>
+            <mat-action-row>
+              <button
+                mat-button
+                class="button-placeorder"
+                fxLayoutAlign="center center"
+                mat-button
+                color="primary"
+              >
+                <span style="font-size: small; height: 10px; color: white"
+                  ><a
+                    style="text-decoration: none; color: white"
+                    href="/success"
+                    >CHECK OUT</a
+                  ></span
+                >
+              </button></mat-action-row
+            >
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<app-footer></app-footer> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="grid-container">
   <mat-grid-list cols="4" rowHeight=".7:1" [gutterSize]="'30px'">
-    <!--tile 1-->
+
     <mat-grid-tile>
       <mat-card class="card">
         <mat-card-header> </mat-card-header>
@@ -25,7 +323,7 @@
           </div>
         </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
     <!-- tile 2 -->
     <!-- <mat-grid-tile>
       <mat-card class="card">
@@ -312,6 +610,6 @@
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>-->
-  </mat-grid-list> 
+  <!-- </mat-grid-list> 
 
-</div>
+</div> -->

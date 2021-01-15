@@ -18,11 +18,6 @@ export class RelevanceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-   
-   console.log();
-  
-    console.log("relevance :" , this.relevance);
   }
   
   

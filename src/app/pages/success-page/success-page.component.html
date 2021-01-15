@@ -3,9 +3,9 @@
   <div class="successImageDiv" fxLayoutAlign="center">
     <img src="../../../assets/images/success/SuccessPage.JPG" />
   </div>
-  <div class="successdisc" fxLayoutAlign="center">
+  <div class="successdisc" fxLayoutAlign="center" [(ngModel)]="orderId">
     <span>Hurray!!!your order is confirmed</span>
-    <span>the order id is ABC save the order id for</span>
+    <span>the order id is {{ orderId }} save the order id for</span>
     <span>further communication...</span>
   </div>
 
@@ -26,8 +26,7 @@
           <td>admin@bookstore.com</td>
           <td>+9199887744</td>
           <td>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
-            excepturi.
+            Malhotra Chambers, First Floor, Govandi East, Mumbai, Maharashtra 400088
           </td>
         </tr>
       </tbody>
