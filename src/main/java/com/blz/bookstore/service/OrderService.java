@@ -7,7 +7,12 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.blz.bookstore.exceptions.BookStoreException;
+import com.blz.bookstore.exceptions.CartException;
+import com.blz.bookstore.exceptions.OrderException;
 import com.blz.bookstore.exceptions.UserException;
+import com.blz.bookstore.model.BookListDataModel;
 import com.blz.bookstore.model.CartData;
 import com.blz.bookstore.model.CustomerModel;
 import com.blz.bookstore.model.OrderData;
@@ -43,7 +48,8 @@ public class OrderService implements IOrderService {
 		return userOrders.get();
 	}
 
-	public Long placeOrder(String token) throws MessagingException, UserException {
+	public Long placeOrder(String token) throws MessagingException, UserException , OrderException{
+
 		Long orderId = generateOrderId();
 		Long userId = JwtGenerator.decodeJWT(token);
 		List<CartData> cart = cartRepository.findByUserId(userId);
@@ -55,7 +61,8 @@ public class OrderService implements IOrderService {
 		System.out.println(save);
 		String body = "OrderId: " + orderId + "\n" + "customer: " + customer.get() + "\n" + "totalPrice: " + totalPrice
 				+ "cart: " + cart;
-		emailSender.send(user.get().getEmailId(), "Order Summary", body, token);
+    	emailSender.send(user.get().getEmailId(), "Order Summary", body, token);
+		
 		return orderId;
 	}
 

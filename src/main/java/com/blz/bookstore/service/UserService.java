@@ -36,7 +36,7 @@ public class UserService implements IUserService {
 	private EmailSender emailSender;
 
 	private static final String VERIFICATION_URL = "http://localhost:8080/verify/";
-	private static final String RESETPASSWORD_URL = "http://localhost:8080/swagger-ui.html#/user-controller/resetPasswordUsingPOST";
+	private static final String RESETPASSWORD_URL = "http://localhost:4200/resetPassword/";
 
 	@Override
 	public boolean register(RegistrationDTO registrationDTO) throws UserException {
@@ -95,10 +95,10 @@ public class UserService implements IUserService {
 
 		if (isUserIdExists != null) { // && isUserIdExists.isVerify()
 			String token = JwtGenerator.createJWT(isUserIdExists.getUserId());
-			String reponse = RESETPASSWORD_URL;
+			String reponse = RESETPASSWORD_URL + token ;
 			emailSender.send(userModel.getEmailId(), "Reset Password Verification URL", reponse, token);
 
-			return new ResponseDTO(HttpStatus.OK.value(), "Link For ResetPassword", reponse);
+			return new ResponseDTO(HttpStatus.OK.value(), "Link For ResetPassword Send to your Email", reponse);
 		}
 		return new ResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Email verfication Fail");
 	}

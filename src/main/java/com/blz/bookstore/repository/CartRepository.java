@@ -27,4 +27,6 @@ public interface CartRepository extends JpaRepository<CartData, Long> {
 
 	@Query(value = "SELECT * FROM cart_details WHERE user_id=:id AND book_id=:bookId", nativeQuery = true)
 	CartData findByUserIdAndBookId(long id, long bookId);
+	
+	
 }

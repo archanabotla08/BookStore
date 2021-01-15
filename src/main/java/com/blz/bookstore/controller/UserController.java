@@ -70,17 +70,16 @@ public class UserController {
 		return new ResponseEntity<ResponseDTO>(resDTO, HttpStatus.NOT_ACCEPTABLE);
 	}
 
-	@PostMapping("/forgot/password")
+	@PostMapping("/forgetPassword")
 	public ResponseEntity<ResponseDTO> forgotPassword(@RequestBody @Valid ForgetPasswordDTO emailId)
 			throws MessagingException {
 
 		ResponseDTO response = userService.forgetPassword(emailId);
 		return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
 	}
-
-	@PostMapping("/reset/password")
+	@PostMapping("/resetPassword/{token}")
 	public ResponseEntity<ResponseDTO> resetPassword(@RequestBody @Valid ResetPasswordDTO resetPassword,
-			@RequestHeader String token) throws UserException {
+			@PathVariable("token") String token) throws UserException {
 
 		if (userService.resetPassword(resetPassword, token)) {
 			ResponseDTO resDTO = new ResponseDTO(200, "User password reset successful");

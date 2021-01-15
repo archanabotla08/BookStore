@@ -63,6 +63,31 @@ public class CartService implements ICartService {
 		return "book added to cart successfully";
 	}
 
+	public String addToWishList(Long bookId, String token) throws BookStoreException, UserException {
+//		long id = JwtGenerator.decodeJWT(token);
+//		CartData cartData = cartRepository.findByUserIdAndBookId(id, bookId);
+//		Long cartBook = cartRepository.findDuplicateBookId(bookId);
+//		if (cartBook != bookId) {
+//			if (cartData != null && cartData.isInWishList()) {
+//				return "Book already present in wishlist";
+//			} else if (cartData != null && !cartData.isInWishList()) {
+//				return "Book already added to Cart";
+//			} else {
+//				BookListDataModel book = bookStoreRepository.findById(bookId)
+//						.orElseThrow(() -> new BookStoreException("book does not exist",
+//								BookStoreException.ExceptionType.BOOKS_NOT_AVAILABLE));
+//				CartData cartModel = new CartData(book);
+//				Optional<UserModel> user = userRepository.findById(id);
+//				cartModel.setUserDetails(user.get());
+//				cartModel.setInWishList(true);
+//				cartRepository.save(cartModel);
+				return "Book added to WishList";
+//			}
+//		}
+//		throw new BookStoreException("Book already present in wishlist",
+//				BookStoreException.ExceptionType.ALREADY_IN_WISHLIST);
+	}
+
 	public List<CartData> addMoreItems(Long bookId, String token) throws UserException {
 		Long userId = JwtGenerator.decodeJWT(token);
 		List<CartData> items = cartRepository.findByUserId(userId);
@@ -78,32 +103,6 @@ public class CartService implements ICartService {
 		}
 		return cartRepository.findByUserId(userId);
 	}
-
-	public ResponseDTO addToWishList(Long bookId, String token) throws BookStoreException, UserException {
-		long id = JwtGenerator.decodeJWT(token);
-		CartData cartData = cartRepository.findByUserIdAndBookId(id, bookId);
-		Long cartBook = cartRepository.findDuplicateBookId(bookId);
-		if (cartBook != bookId) {
-			if (cartData != null && cartData.isInWishList()) {
-				return new ResponseDTO(HttpStatus.OK.value(), "Book already present in wishlist");
-			} else if (cartData != null && !cartData.isInWishList()) {
-				return new ResponseDTO(HttpStatus.OK.value(), "Book already added to Cart");
-			} else {
-				BookListDataModel book = bookStoreRepository.findById(bookId)
-						.orElseThrow(() -> new BookStoreException("book does not exist",
-								BookStoreException.ExceptionType.BOOKS_NOT_AVAILABLE));
-				CartData cartModel = new CartData(book);
-				Optional<UserModel> user = userRepository.findById(id);
-				cartModel.setUserDetails(user.get());
-				cartModel.setInWishList(true);
-				cartRepository.save(cartModel);
-				return new ResponseDTO(HttpStatus.OK.value(), "Book added to WishList");
-			}
-		}
-		throw new BookStoreException("Book already present in wishlist",
-				BookStoreException.ExceptionType.ALREADY_IN_WISHLIST);
-	}
-
 	public ResponseDTO addFromWishlistToCart(Long bookId, String token) throws UserException {
 		long id = JwtGenerator.decodeJWT(token);
 		CartData cartModel = cartRepository.findByUserIdAndBookId(id, bookId);

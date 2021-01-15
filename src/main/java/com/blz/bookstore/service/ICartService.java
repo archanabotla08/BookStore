@@ -18,7 +18,7 @@ public interface ICartService {
 
 	List<CartData> addMoreItems(Long bookId, String token) throws UserException;
 
-	ResponseDTO addToWishList(Long bookId, String token) throws BookStoreException, UserException;
+	String addToWishList(Long bookId, String token) throws BookStoreException, UserException;
 
 	ResponseDTO addFromWishlistToCart(Long bookId, String token) throws UserException;
 

@@ -1,5 +1,6 @@
 package com.blz.bookstore.service;
 
+import com.blz.bookstore.exceptions.OrderException;
 import com.blz.bookstore.exceptions.UserException;
 import javax.mail.MessagingException;
 
@@ -9,6 +10,6 @@ public interface IOrderService {
 
 	OrderData getOrderSummary(String token) throws UserException;
 
-	Long placeOrder(String token) throws MessagingException, UserException;
+	Long placeOrder(String token) throws MessagingException, UserException , OrderException;
 
 }

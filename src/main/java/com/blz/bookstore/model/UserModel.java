@@ -52,11 +52,66 @@ public @Data class UserModel {
 	@JoinColumn(name = "book_Id")
 	private List<BookListDataModel> books;
 
-	public UserModel(String fullName, String emailId, String mobileNumber, String password) {
+	public UserModel(String fullName, String emailId, String mobileNumber, String password, boolean isVerify) {
 		super();
 		this.fullName = fullName;
 		this.emailId = emailId;
 		this.mobileNumber = mobileNumber;
 		this.password = password;
+		this.isVerify = isVerify;
 	}
+
+	public UserModel() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public boolean isVerify() {
+		return isVerify;
+	}
+
+	public void setVerify(boolean isVerify) {
+		this.isVerify = isVerify;
+	}
+
+
 }

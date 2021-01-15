@@ -18,8 +18,7 @@ public class EmailSender {
 		MimeMessage message = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper;
 		helper = new MimeMessageHelper(message, true);
-		String msgBody = "Hi, " + "\n" + "Use below link to reset your password: " + "\n" + body + "\n" + "Token: "
-				+ token;
+		String msgBody = "Hi, " + "\n" + "Use below link to reset your password: " + "\n" + body + "\n";
 		helper.setSubject(subject);
 		helper.setTo(to);
 		helper.setText(msgBody);

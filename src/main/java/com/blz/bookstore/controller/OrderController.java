@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.bookstore.dto.ResponseDTO;
+import com.blz.bookstore.exceptions.OrderException;
 import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.OrderData;
 import com.blz.bookstore.service.IOrderService;
@@ -39,7 +40,7 @@ public class OrderController {
 	@ApiOperation("For placing order")
 	@PostMapping("/place")
 	public ResponseEntity<ResponseDTO> placeOrder(@RequestHeader String token)
-			throws MessagingException, UserException {
+			throws MessagingException, UserException, OrderException {
 		Long orderId = orderService.placeOrder(token);
 		ResponseDTO respDTO = new ResponseDTO(200, "Order placed Successfully", orderId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

@@ -70,9 +70,11 @@ public class CartController {
 
 	@ApiOperation(value = "For adding book to wishlist")
 	@PostMapping("/wishlist/book")
-	public ResponseDTO addToWishList(@RequestParam Long bookId, @RequestHeader("token") String token)
+	public ResponseEntity<ResponseDTO> addToWishList(@RequestParam Long bookId, @RequestHeader("token") String token)
 			throws BookStoreException, UserException {
-		return cartService.addToWishList(bookId, token);
+		String responseMessage =  cartService.addToWishList(bookId, token);
+		ResponseDTO respDTO = new ResponseDTO(200, "Successfully added book to wishlist", responseMessage);
+		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "For putting books wishlist to cart")
