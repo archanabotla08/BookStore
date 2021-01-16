@@ -21,7 +21,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput formControlName="password" placeholder="password" rows="3" maxlength="300" matInput
+          <input matInput type="password" formControlName="password" placeholder="password" rows="3" maxlength="300" matInput
             style="background: none" />
           <mat-error fxFlex *ngIf="!loginDetail.controls['password'].valid && loginDetail.controls['password'].touched">
             Invalid password!

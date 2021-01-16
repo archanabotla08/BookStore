@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BookListService {
-  private getUrl: string = "http://localhost:8080/bookstoreservice/";
-  private getCartUrl: string = "http://localhost:8080/cart/";
+  private getUrl: string = "http://18.219.128.158:8080/bookstoreservice/";
+  private getCartUrl: string = "http://18.219.128.158:8080/cart/";
   headersRequest: any;
 
   constructor(private httpClient: HttpClient) { }

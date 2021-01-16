@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class CustomerService {
 
-  private getUrl: string = "http://localhost:8080/customer/";
+  private getUrl: string = "http://18.219.128.158:8080/customer/";
 
 
   headersRequest: any;

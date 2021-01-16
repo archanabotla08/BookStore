@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-  private getUrl: string = "http://localhost:8080/cart/";
-  private getUrlCu: string = "http://localhost:8080/customer/";
+  private getUrl: string = "http://18.219.128.158:8080/cart/";
+  private getUrlCu: string = "http://18.219.128.158:8080/customer/";
 
 
   headersRequest: any;

@@ -127,6 +127,7 @@ export class CartComponent implements OnInit {
         this.toastr.success(response.message);
         this.getOrderDetails();
       }
+      this.getOrderDetails();
     }, error => { })
     this.getOrderDetails();
   }
