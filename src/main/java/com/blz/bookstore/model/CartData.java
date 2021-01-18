@@ -1,7 +1,9 @@
 package com.blz.bookstore.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,6 +56,10 @@ public @Data class CartData {
 	@ManyToOne()
 	@JoinColumn(name = "userId")
 	public UserModel userDetails;
+	
+	//@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@JoinColumn(name = "cartbooks")
+    //private OrderData order;
 
 	public CartData(BookListDataModel book) {
 		this.bookId = book.getBookId();

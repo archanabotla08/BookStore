@@ -78,4 +78,17 @@ public class OrderService implements IOrderService {
 		}
 		return orderId;
 	}
+
+	@Override
+	public String deleteAll(String token) {
+		Long userId;
+		try {
+			userId = JwtGenerator.decodeJWT(token);
+			orderRepository.deleteByUserId(userId);
+			return "Orders removed Successfully";
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

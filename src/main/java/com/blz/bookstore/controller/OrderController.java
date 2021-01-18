@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blz.bookstore.dto.ResponseDTO;
+import com.blz.bookstore.exceptions.CartException;
 import com.blz.bookstore.exceptions.OrderException;
 import com.blz.bookstore.exceptions.UserException;
 import com.blz.bookstore.model.OrderData;
@@ -45,4 +47,12 @@ public class OrderController {
 		ResponseDTO respDTO = new ResponseDTO(200, "Order placed Successfully", orderId);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
+	
+	@ApiOperation("For deleteing all orders")
+	@DeleteMapping("/deleteAll")
+	public ResponseEntity<ResponseDTO> deleteAllOrders(@RequestHeader String token) throws UserException {
+		String responseMessage = orderService.deleteAll(token);
+		return new ResponseEntity<>(new ResponseDTO(200, responseMessage), HttpStatus.OK);
+	}
+
 }

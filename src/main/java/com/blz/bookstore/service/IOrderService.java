@@ -12,4 +12,6 @@ public interface IOrderService {
 
 	Long placeOrder(String token) throws MessagingException, UserException , OrderException;
 
+	String deleteAll(String token);
+
 }
